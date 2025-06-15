@@ -43,6 +43,18 @@
               "LogGroupName": "/aws/lambda/user-service-local-getUserById"
             }
           },
+          "UpdateUserLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/user-service-local-updateUser"
+            }
+          },
+          "DeleteUserLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/user-service-local-deleteUser"
+            }
+          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -129,9 +141,9 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-9e3cf5fa-2159",
-                "S3Key": "serverless/user-service/local/1749961977123-2025-06-15T04:32:57.123Z/user-service.zip"
+                "S3Key": "serverless/user-service/local/1749967927804-2025-06-15T06:12:07.804Z/user-service.zip"
               },
-              "Handler": "crea_usuario.handler",
+              "Handler": "create_user.handler",
               "Runtime": "python3.11",
               "FunctionName": "user-service-local-createUser",
               "MemorySize": 1024,
@@ -158,9 +170,9 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-9e3cf5fa-2159",
-                "S3Key": "serverless/user-service/local/1749961977123-2025-06-15T04:32:57.123Z/user-service.zip"
+                "S3Key": "serverless/user-service/local/1749967927804-2025-06-15T06:12:07.804Z/user-service.zip"
               },
-              "Handler": "trae_usuario.handler",
+              "Handler": "get_user.handler",
               "Runtime": "python3.11",
               "FunctionName": "user-service-local-getUserById",
               "MemorySize": 1024,
@@ -182,26 +194,106 @@
               "GetUserByIdLogGroup"
             ]
           },
-          "CreateUserLambdaVersionT8IS69fmuizJ6J8F7qSuldEFWYmFdHVSNL0uPmKE": {
+          "UpdateUserLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "serverless-framework-deployments-us-east-1-9e3cf5fa-2159",
+                "S3Key": "serverless/user-service/local/1749967927804-2025-06-15T06:12:07.804Z/user-service.zip"
+              },
+              "Handler": "update_user.handler",
+              "Runtime": "python3.11",
+              "FunctionName": "user-service-local-updateUser",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Description": "Actualiza los datos de un usuario existente.",
+              "Environment": {
+                "Variables": {
+                  "DYNAMODB_TABLE": "sgeac-users-table-local"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "UpdateUserLogGroup"
+            ]
+          },
+          "DeleteUserLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "serverless-framework-deployments-us-east-1-9e3cf5fa-2159",
+                "S3Key": "serverless/user-service/local/1749967927804-2025-06-15T06:12:07.804Z/user-service.zip"
+              },
+              "Handler": "delete_user.handler",
+              "Runtime": "python3.11",
+              "FunctionName": "user-service-local-deleteUser",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Description": "Elimina un usuario por su ID.",
+              "Environment": {
+                "Variables": {
+                  "DYNAMODB_TABLE": "sgeac-users-table-local"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DeleteUserLogGroup"
+            ]
+          },
+          "CreateUserLambdaVersionj9hRPKjtvCvKZcEcleJi2k9VUHZ8UPKEKcCp7WVpI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateUserLambdaFunction"
               },
-              "CodeSha256": "oOf132xP80rY39lrvaVsyAn2+J8LQPSBk+WfUaNbTqs=",
+              "CodeSha256": "OdRMLovUFnaE8TXtVF8t+rWHYiLCWcRNw74he26zIRI=",
               "Description": "Crea un nuevo usuario en la academia."
             }
           },
-          "GetUserByIdLambdaVersionIoF8ro0fnyrKWJagXvusWICsR1UXRDVryjoZ10SjVM": {
+          "GetUserByIdLambdaVersion6nwLyWLQDBsLqycw61LhPDEbus6pT6cfsFiZn3HHJA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUserByIdLambdaFunction"
               },
-              "CodeSha256": "oOf132xP80rY39lrvaVsyAn2+J8LQPSBk+WfUaNbTqs=",
+              "CodeSha256": "OdRMLovUFnaE8TXtVF8t+rWHYiLCWcRNw74he26zIRI=",
               "Description": "Obtiene un usuario por su ID único."
+            }
+          },
+          "UpdateUserLambdaVersionpSZADZYLHEtFiJrMrVnBPlqW2DMpaKrVMBchTKtgk4": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UpdateUserLambdaFunction"
+              },
+              "CodeSha256": "OdRMLovUFnaE8TXtVF8t+rWHYiLCWcRNw74he26zIRI=",
+              "Description": "Actualiza los datos de un usuario existente."
+            }
+          },
+          "DeleteUserLambdaVersionyjKA4A50s9R6u2uYxyqgWHHbB9bx9UZPU9oOT5g": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteUserLambdaFunction"
+              },
+              "CodeSha256": "OdRMLovUFnaE8TXtVF8t+rWHYiLCWcRNw74he26zIRI=",
+              "Description": "Elimina un usuario por su ID."
             }
           },
           "ApiGatewayRestApi": {
@@ -317,7 +409,7 @@
                     "ResponseParameters": {
                       "method.response.header.Access-Control-Allow-Origin": "'*'",
                       "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT,GET'"
                     },
                     "ResponseTemplates": {
                       "application/json": ""
@@ -425,7 +517,99 @@
               "GetUserByIdLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1749961967597": {
+          "ApiGatewayMethodUsersIdVarPut": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "PUT",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceUsersIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "UpdateUserLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "UpdateUserLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayMethodUsersIdVarDelete": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "DELETE",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceUsersIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "DeleteUserLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "DeleteUserLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayDeployment1749967920132": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -437,7 +621,9 @@
               "ApiGatewayMethodUsersOptions",
               "ApiGatewayMethodUsersIdVarOptions",
               "ApiGatewayMethodUsersPost",
-              "ApiGatewayMethodUsersIdVarGet"
+              "ApiGatewayMethodUsersIdVarGet",
+              "ApiGatewayMethodUsersIdVarPut",
+              "ApiGatewayMethodUsersIdVarDelete"
             ]
           },
           "CreateUserLambdaPermissionApiGateway": {
@@ -514,6 +700,80 @@
               }
             }
           },
+          "UpdateUserLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "UpdateUserLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "DeleteUserLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "DeleteUserLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
           "UsersTable": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
@@ -547,7 +807,7 @@
           "CreateUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateUserLambdaVersionT8IS69fmuizJ6J8F7qSuldEFWYmFdHVSNL0uPmKE"
+              "Ref": "CreateUserLambdaVersionj9hRPKjtvCvKZcEcleJi2k9VUHZ8UPKEKcCp7WVpI"
             },
             "Export": {
               "Name": "sls-user-service-local-CreateUserLambdaFunctionQualifiedArn"
@@ -556,10 +816,28 @@
           "GetUserByIdLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUserByIdLambdaVersionIoF8ro0fnyrKWJagXvusWICsR1UXRDVryjoZ10SjVM"
+              "Ref": "GetUserByIdLambdaVersion6nwLyWLQDBsLqycw61LhPDEbus6pT6cfsFiZn3HHJA"
             },
             "Export": {
               "Name": "sls-user-service-local-GetUserByIdLambdaFunctionQualifiedArn"
+            }
+          },
+          "UpdateUserLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UpdateUserLambdaVersionpSZADZYLHEtFiJrMrVnBPlqW2DMpaKrVMBchTKtgk4"
+            },
+            "Export": {
+              "Name": "sls-user-service-local-UpdateUserLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteUserLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteUserLambdaVersionyjKA4A50s9R6u2uYxyqgWHHbB9bx9UZPU9oOT5g"
+            },
+            "Export": {
+              "Name": "sls-user-service-local-DeleteUserLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -612,7 +890,7 @@
     "pluginsData": {},
     "functions": {
       "createUser": {
-        "handler": "crea_usuario.handler",
+        "handler": "create_user.handler",
         "description": "Crea un nuevo usuario en la academia.",
         "events": [
           {
@@ -646,10 +924,10 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "CreateUserLambdaVersionT8IS69fmuizJ6J8F7qSuldEFWYmFdHVSNL0uPmKE"
+        "versionLogicalId": "CreateUserLambdaVersionj9hRPKjtvCvKZcEcleJi2k9VUHZ8UPKEKcCp7WVpI"
       },
       "getUserById": {
-        "handler": "trae_usuario.handler",
+        "handler": "get_user.handler",
         "description": "Obtiene un usuario por su ID único.",
         "events": [
           {
@@ -683,7 +961,81 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "GetUserByIdLambdaVersionIoF8ro0fnyrKWJagXvusWICsR1UXRDVryjoZ10SjVM"
+        "versionLogicalId": "GetUserByIdLambdaVersion6nwLyWLQDBsLqycw61LhPDEbus6pT6cfsFiZn3HHJA"
+      },
+      "updateUser": {
+        "handler": "update_user.handler",
+        "description": "Actualiza los datos de un usuario existente.",
+        "events": [
+          {
+            "http": {
+              "path": "users/{id}",
+              "method": "put",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "PUT"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent",
+                  "X-Amzn-Trace-Id"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "user-service-local-updateUser",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.11",
+        "vpc": {},
+        "versionLogicalId": "UpdateUserLambdaVersionpSZADZYLHEtFiJrMrVnBPlqW2DMpaKrVMBchTKtgk4"
+      },
+      "deleteUser": {
+        "handler": "delete_user.handler",
+        "description": "Elimina un usuario por su ID.",
+        "events": [
+          {
+            "http": {
+              "path": "users/{id}",
+              "method": "delete",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "DELETE"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent",
+                  "X-Amzn-Trace-Id"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "user-service-local-deleteUser",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.11",
+        "vpc": {},
+        "versionLogicalId": "DeleteUserLambdaVersionyjKA4A50s9R6u2uYxyqgWHHbB9bx9UZPU9oOT5g"
       }
     },
     "resources": {
@@ -739,7 +1091,7 @@
     "artifact": "/home/aagonzalezv/sgeac-monorepo/services/user-service/.serverless/user-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/user-service/local/1749961977123-2025-06-15T04:32:57.123Z",
+    "artifactDirectoryName": "serverless/user-service/local/1749967927804-2025-06-15T06:12:07.804Z",
     "artifact": "user-service.zip"
   }
 }
