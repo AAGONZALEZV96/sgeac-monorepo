@@ -44,7 +44,7 @@ functions:
           cors: true
 
   listSucursales:
-    handler: list_sucursales.handler
+    handler: list_sucursal.handler
     description: "Lista todas las sucursales."
     events:
       - http:
@@ -53,7 +53,7 @@ functions:
           cors: true
 
   getSucursalById:
-    handler: get_sucursales.handler
+    handler: get_sucursal.handler
     description: "Obtiene una sucursal por su ID."
     events:
       - http:
@@ -62,7 +62,7 @@ functions:
           cors: true
 
   updateSucursal:
-    handler: update_sucursales.handler
+    handler: update_sucursal.handler
     description: "Actualiza los datos de una sucursal."
     events:
       - http:
@@ -71,7 +71,7 @@ functions:
           cors: true
 
   deleteSucursal:
-    handler: delete_sucursales.handler
+    handler: delete_sucursal.handler
     description: "Elimina una sucursal."
     events:
       - http:
