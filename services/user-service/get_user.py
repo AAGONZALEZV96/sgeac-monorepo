@@ -45,7 +45,7 @@ def handler(event, context):
                 'email': item['email']['S'],
                 'edad': int(item['edad']['N']),
                 'rol': item['rol']['S'],
-                'sucursal_asignada': item['sucursal_asignada']['S']
+                'sucursal': item['sucursal']['S']
             }
 
             return {

@@ -36,14 +36,14 @@ def handler(event, context):
         email = body.get('email')
         edad = body.get('edad')
         rol = body.get('rol')
-        sucursal = body.get('sucursal_asignada')
+        sucursal = body.get('sucursal')
 
         # Validación simple de campos requeridos
         if not all([nombre, rut, email, edad, rol, sucursal]):
             logger.error("Error de validación: Faltan campos requeridos.")
             return {
                 "statusCode": 400,
-                "body": json.dumps({"error": "Faltan campos requeridos: nombre, rut, email, edad, rol, sucursal_asignada."})
+                "body": json.dumps({"error": "Faltan campos requeridos: nombre, rut, email, edad, rol, sucursal."})
             }
 
         # Generar un ID único para el usuario
@@ -57,7 +57,7 @@ def handler(event, context):
             'email': {'S': email},
             'edad': {'N': str(edad)},
             'rol': {'S': rol},
-            'sucursal_asignada': {'S': sucursal}
+            'sucursal': {'S': sucursal}
         }
 
         # Guardar el item en la tabla
