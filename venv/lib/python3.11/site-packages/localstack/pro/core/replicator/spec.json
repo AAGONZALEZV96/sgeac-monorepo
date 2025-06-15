@@ -1,0 +1,47 @@
+{
+  "conversion_function_names": [
+    "lambda_arn_to_name",
+    "iam_role_arn_to_name"
+  ],
+  "resources": {
+    "AWS::EC2::SecurityGroup": {},
+    "AWS::EC2::Subnet": {},
+    "AWS::EC2::VPC": {},
+    "AWS::ECR::Repository": {},
+    "AWS::IAM::Policy": {},
+    "AWS::IAM::Role": {},
+    "AWS::KMS::Key": {},
+    "AWS::SecretsManager::Secret": {},
+    "AWS::Lambda::Function": {
+      "Role": {
+        "type": "AWS::IAM::Role",
+        "identifier": {
+          "RoleName": {
+            "conversion": "iam_role_arn_to_name"
+          }
+        }
+      }
+    },
+    "AWS::Lambda::LayerVersion": {},
+    "AWS::Lambda::Permission": {},
+    "AWS::Route53::HostedZone": {},
+    "AWS::SNS::Subscription": {
+      "TopicArn": {
+        "type": "AWS::SNS::Topic",
+        "identifier": {
+          "TopicArn": "value"
+        }
+      },
+      "Endpoint": {
+        "type": "AWS::Lambda::Function",
+        "identifier": {
+          "FunctionName": {
+            "conversion": "lambda_arn_to_name"
+          }
+        }
+      }
+    },
+    "AWS::SNS::Topic": {},
+    "AWS::SSM::Parameter": {}
+  }
+}

@@ -1,0 +1,4 @@
+localstack-client
+
+[ver1]
+awscli

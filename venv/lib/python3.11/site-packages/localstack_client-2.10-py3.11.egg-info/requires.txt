@@ -1,0 +1,9 @@
+boto3
+
+[test]
+black
+coverage
+flake8
+isort
+localstack
+pytest

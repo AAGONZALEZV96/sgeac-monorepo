@@ -1,0 +1,86 @@
+service: user-service
+
+provider:
+  name: aws
+  runtime: python3.11
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:custom.tableName}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:PutItem"    # Permiso para create.py
+            - "dynamodb:GetItem"    # ¡NUEVO! Permiso para get.py
+          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-localstack
+
+custom:
+  tableName: sgeac-users-table-${self:provider.stage}
+  pythonRequirements:
+    dockerizePip: true
+  localstack:
+    stages:
+      - local
+    host: http://localhost
+    autostart: false
+
+functions:
+  createUser:
+    handler: create_user.handler
+    description: "Crea un nuevo usuario en la academia."
+    events:
+      - http:
+          path: /users
+          method: post
+          cors: true
+
+  # --- ¡NUEVA FUNCIÓN AÑADIDA AQUÍ! ---
+  getUserById:
+    handler: get_user.handler
+    description: "Obtiene un usuario por su ID único."
+    events:
+      - http:
+          path: /users/{id} # La ruta incluye el parámetro 'id'
+          method: get
+          cors: true
+
+  updateUser:
+    handler: update_user.handler
+    description: "Actualiza los datos de un usuario existente."
+    events:
+      - http:
+          path: /users/{id}
+          method: put  # Usamos el método PUT para actualizar
+          cors: true
+
+  # --- ¡NUEVA FUNCIÓN DE ELIMINACIÓN! ---
+  deleteUser:
+    handler: delete_user.handler
+    description: "Elimina un usuario por su ID."
+    events:
+      - http:
+          path: /users/{id}
+          method: delete # Usamos el método DELETE para eliminar
+          cors: true
+
+resources:
+  Resources:
+    UsersTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

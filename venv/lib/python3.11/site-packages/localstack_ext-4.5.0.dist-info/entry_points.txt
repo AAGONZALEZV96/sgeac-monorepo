@@ -1,0 +1,445 @@
+[localstack.aws.provider]
+account:pro = localstack.pro.core.providers:account
+acm-pca:pro = localstack.pro.core.providers:acm_pca
+amplify:pro = localstack.pro.core.providers:amplify
+apigateway:legacy_pro = localstack.pro.core.providers:apigateway_legacy
+apigateway:next_gen_pro = localstack.pro.core.providers:apigateway_next_gen
+apigateway:pro = localstack.pro.core.providers:apigateway
+apigatewaymanagementapi:legacy_pro = localstack.pro.core.providers:apigatewaymanagementapi_legacy
+apigatewaymanagementapi:next_gen_pro = localstack.pro.core.providers:apigatewaymanagementapi_next_gen
+apigatewaymanagementapi:pro = localstack.pro.core.providers:apigatewaymanagementapi
+apigatewayv2:legacy_pro = localstack.pro.core.providers:apigatewayv2_legacy
+apigatewayv2:next_gen_pro = localstack.pro.core.providers:apigatewayv2_next_gen
+apigatewayv2:pro = localstack.pro.core.providers:apigatewayv2
+appconfig:pro = localstack.pro.core.providers:appconfig
+appconfigdata:pro = localstack.pro.core.providers:appconfigdata
+application-autoscaling:pro = localstack.pro.core.providers:application_autoscaling
+appsync:pro = localstack.pro.core.providers:appsync
+athena:pro = localstack.pro.core.providers:athena
+autoscaling:pro = localstack.pro.core.providers:autoscaling
+backup:pro = localstack.pro.core.providers:backup
+batch:pro = localstack.pro.core.providers:batch
+batch:v2 = localstack.pro.core.providers:batch_v2
+bedrock-runtime:pro = localstack.pro.core.providers:bedrock_runtime
+bedrock:pro = localstack.pro.core.providers:bedrock
+ce:pro = localstack.pro.core.providers:ce
+cloudcontrol:pro = localstack.pro.core.providers:cloudcontrol
+cloudformation:pro = localstack.pro.core.providers:cloudformation
+cloudfront:pro = localstack.pro.core.providers:cloudfront
+cloudtrail:pro = localstack.pro.core.providers:cloudtrail
+codeartifact:pro = localstack.pro.core.providers:codeartifact
+codebuild:pro = localstack.pro.core.providers:codebuild
+codecommit:pro = localstack.pro.core.providers:codecommit
+codeconnections:pro = localstack.pro.core.providers:codeconnections
+codedeploy:pro = localstack.pro.core.providers:codedeploy
+codepipeline:pro = localstack.pro.core.providers:codepipeline
+codestar-connections:pro = localstack.pro.core.providers:codestar_connections
+cognito-identity:pro = localstack.pro.core.providers:cognito_identity
+cognito-idp:pro = localstack.pro.core.providers:cognito_idp
+dms:pro = localstack.pro.core.providers:dms
+docdb:pro = localstack.pro.core.providers:docdb
+dynamodb:pro = localstack.pro.core.providers:dynamodb
+dynamodb:v2_pro = localstack.pro.core.providers:dynamodb_v2
+ec2:pro = localstack.pro.core.providers:ec2
+ecr:pro = localstack.pro.core.providers:ecr
+ecs:pro = localstack.pro.core.providers:ecs
+efs:pro = localstack.pro.core.providers:efs
+eks:mock = localstack.pro.core.providers:eks_mock
+eks:pro = localstack.pro.core.providers:eks
+elasticache:pro = localstack.pro.core.providers:elasticache
+elasticbeanstalk:pro = localstack.pro.core.providers:elasticbeanstalk
+elastictranscoder:pro = localstack.pro.core.providers:elastictranscoder
+elb:pro = localstack.pro.core.providers:elb
+elbv2:pro = localstack.pro.core.providers:elbv2
+emr-serverless:pro = localstack.pro.core.providers:emr_serverless
+emr:pro = localstack.pro.core.providers:emr
+events:legacy_pro = localstack.pro.core.providers:events_legacy
+events:pro = localstack.pro.core.providers:events
+events:v1_pro = localstack.pro.core.providers:events_v1
+events:v2_pro = localstack.pro.core.providers:events_v2
+fis:pro = localstack.pro.core.providers:fis
+glacier:pro = localstack.pro.core.providers:glacier
+glue:pro = localstack.pro.core.providers:glue
+identitystore:pro = localstack.pro.core.providers:identitystore
+iot-data:pro = localstack.pro.core.providers:iot_data
+iot:pro = localstack.pro.core.providers:iot
+iotanalytics:pro = localstack.pro.core.providers:iotanalytics
+iotwireless:pro = localstack.pro.core.providers:iotwireless
+kafka:pro = localstack.pro.core.providers:kafka
+kinesisanalytics:pro = localstack.pro.core.providers:kinesisanalytics
+kinesisanalyticsv2:legacy = localstack.pro.core.providers:kinesisanalyticsv2_legacy
+kinesisanalyticsv2:pro = localstack.pro.core.providers:kinesisanalyticsv2
+lakeformation:pro = localstack.pro.core.providers:lakeformation
+lambda:asf_pro = localstack.pro.core.providers:lambda_asf
+lambda:pro = localstack.pro.core.providers:lambda_
+lambda:v2_pro = localstack.pro.core.providers:lambda_v2
+logs:pro = localstack.pro.core.providers:logs
+managedblockchain:pro = localstack.pro.core.providers:managedblockchain
+mediaconvert:pro = localstack.pro.core.providers:mediaconvert
+mediastore-data:pro = localstack.pro.core.providers:mediastore_data
+mediastore:pro = localstack.pro.core.providers:mediastore
+memorydb:pro = localstack.pro.core.providers:memorydb
+mq:pro = localstack.pro.core.providers:mq
+mwaa:pro = localstack.pro.core.providers:mwaa
+neptune:pro = localstack.pro.core.providers:neptune
+opensearch:pro = localstack.pro.core.providers:opensearch
+organizations:pro = localstack.pro.core.providers:organizations
+pinpoint:pro = localstack.pro.core.providers:pinpoint
+pipes:pro = localstack.pro.core.providers:pipes
+qldb-session:pro = localstack.pro.core.providers:qldb_session
+qldb:pro = localstack.pro.core.providers:qldb
+ram:pro = localstack.pro.core.providers:ram
+rds-data:pro = localstack.pro.core.providers:rds_data
+rds:pro = localstack.pro.core.providers:rds
+redshift-data:pro = localstack.pro.core.providers:redshift_data
+redshift:pro = localstack.pro.core.providers:redshift
+route53:pro = localstack.pro.core.providers:route53
+s3:pro = localstack.pro.core.providers:s3
+sagemaker-runtime:pro = localstack.pro.core.providers:sagemaker_runtime
+sagemaker:pro = localstack.pro.core.providers:sagemaker
+serverlessrepo:pro = localstack.pro.core.providers:serverlessrepo
+servicediscovery:pro = localstack.pro.core.providers:servicediscovery
+ses:pro = localstack.pro.core.providers:ses
+sesv2:pro = localstack.pro.core.providers:sesv2
+shield:pro = localstack.pro.core.providers:shield
+sqs:pro = localstack.pro.core.providers:sqs
+ssm:pro = localstack.pro.core.providers:ssm
+sso-admin:pro = localstack.pro.core.providers:sso_admin
+textract:pro = localstack.pro.core.providers:textract
+timestream-query:pro = localstack.pro.core.providers:timestream_query
+timestream-write:pro = localstack.pro.core.providers:timestream_write
+transfer:pro = localstack.pro.core.providers:transfer
+verifiedpermissions:pro = localstack.pro.core.providers:verifiedpermissions
+wafv2:pro = localstack.pro.core.providers:wafv2
+xray:pro = localstack.pro.core.providers:xray
+
+[localstack.cloudformation.resource_providers]
+AWS::Amplify::Branch = localstack.pro.core.services.amplify.resource_providers.aws_amplify_branch_plugin:AmplifyBranchProviderPlugin
+AWS::AutoScaling::AutoScalingGroup = localstack.pro.core.services.autoscaling.resource_providers.aws_autoscaling_autoscalinggroup_plugin:AutoScalingAutoScalingGroupProviderPlugin
+AWS::AutoScaling::LaunchConfiguration = localstack.pro.core.services.autoscaling.resource_providers.aws_autoscaling_launchconfiguration_plugin:AutoScalingLaunchConfigurationProviderPlugin
+AWS::ServiceDiscovery::HttpNamespace = localstack.pro.core.services.servicediscovery.resource_providers.aws_servicediscovery_httpnamespace_plugin:ServiceDiscoveryHttpNamespaceProviderPlugin
+AWS::ServiceDiscovery::PrivateDnsNamespace = localstack.pro.core.services.servicediscovery.resource_providers.aws_servicediscovery_privatednsnamespace_plugin:ServiceDiscoveryPrivateDnsNamespaceProviderPlugin
+AWS::ServiceDiscovery::PublicDnsNamespace = localstack.pro.core.services.servicediscovery.resource_providers.aws_servicediscovery_publicdnsnamespace_plugin:ServiceDiscoveryPublicDnsNamespaceProviderPlugin
+AWS::ServiceDiscovery::Service = localstack.pro.core.services.servicediscovery.resource_providers.aws_servicediscovery_service_plugin:ServiceDiscoveryServiceProviderPlugin
+AWS::Timestream::Database = localstack.pro.core.services.timestream.resource_providers.aws_timestream_database_plugin:TimestreamDatabaseProviderPlugin
+AWS::Timestream::Table = localstack.pro.core.services.timestream.resource_providers.aws_timestream_table_plugin:TimestreamTableProviderPlugin
+
+[localstack.container.runtime]
+docker = localstack.pro.core.utils.container.plugins:DockerContainerRuntimePlugin
+kubernetes = localstack.pro.core.utils.container.plugins:KubernetesContainerRuntimePlugin
+
+[localstack.hooks.configure_localstack_container]
+configure_extensions_dev_container = localstack.pro.core.extensions.plugins:configure_extensions_dev_container
+configure_pro_container = localstack.pro.core.plugins:configure_pro_container
+
+[localstack.hooks.lambda_create_event_source_poller]
+create_event_source_poller_hook = localstack.pro.core.services.lambda_.event_source_mapping.hooks:create_event_source_poller_hook
+
+[localstack.hooks.lambda_prebuild_environment_image]
+prebuild_lambda_image = localstack.pro.core.services.lambda_.invocation.docker_runtime_executor_hooks:prebuild_lambda_image
+
+[localstack.hooks.lambda_prepare_docker_executors]
+prepare_docker_executor_hook = localstack.pro.core.services.lambda_.invocation.docker_runtime_executor_hooks:prepare_docker_executor_hook
+
+[localstack.hooks.lambda_set_event_source_config_defaults]
+set_event_source_config_default_hook = localstack.pro.core.services.lambda_.event_source_mapping.hooks:set_event_source_config_default_hook
+
+[localstack.hooks.lambda_start_docker_executor]
+start_docker_executor_hook = localstack.pro.core.services.lambda_.invocation.docker_runtime_executor_hooks:start_docker_executor_hook
+
+[localstack.hooks.on_infra_ready]
+_enable_iam_after_ready = localstack.pro.core.services.iam.plugins:_enable_iam_after_ready
+do_run_state_load_all = localstack.pro.core.persistence.snapshot.plugins:do_run_state_load_all
+extensions_on_infra_ready = localstack.pro.core.extensions.plugins:extensions_on_infra_ready
+initialize_health_info = localstack.pro.core.plugins:initialize_health_info
+platform_plugins_on_infra_ready = localstack.pro.core.runtime.plugin.plugins:platform_plugins_on_infra_ready
+register_auto_load_pod = localstack.pro.core.persistence.plugins:register_auto_load_pod
+start_foundation_model_manager = localstack.pro.core.services.bedrock.plugins:start_foundation_model_manager
+
+[localstack.hooks.on_infra_shutdown]
+extensions_on_infra_shutdown = localstack.pro.core.extensions.plugins:extensions_on_infra_shutdown
+platform_plugins_on_infra_shutdown = localstack.pro.core.runtime.plugin.plugins:platform_plugins_on_infra_shutdown
+shutdown_ci_run_manager = localstack.pro.core.persistence.plugins:shutdown_ci_run_manager
+
+[localstack.hooks.on_infra_start]
+_disable_iam_during_startup = localstack.pro.core.services.iam.plugins:_disable_iam_during_startup
+add_aws_request_logger = localstack.pro.core.analytics.plugins:add_aws_request_logger
+add_custom_edge_routes = localstack.pro.core.plugins:add_custom_edge_routes
+configure_transparent_endpoint_injection = localstack.pro.core.plugins:configure_transparent_endpoint_injection
+deprecation_warnings_pro = localstack.pro.core.plugins:deprecation_warnings_pro
+enable_lambda_executor_licensing = localstack.pro.core.services.lambda_.plugins:enable_lambda_executor_licensing
+extensions_on_infra_start = localstack.pro.core.extensions.plugins:extensions_on_infra_start
+init_licenseinfo_handler = localstack.pro.core.services.internal.licenseinfo.plugins:init_licenseinfo_handler
+init_resources_handler = localstack.pro.core.services.internal.resources.plugins:init_resources_handler
+init_stackinfo_handler = localstack.pro.core.services.internal.stackinfo.plugins:init_stackinfo_handler
+platform_plugins_add_service_plugin_listener = localstack.pro.core.runtime.plugin.plugins:platform_plugins_add_service_plugin_listener
+platform_plugins_on_infra_start = localstack.pro.core.runtime.plugin.plugins:platform_plugins_on_infra_start
+register_ci_run_manager = localstack.pro.core.persistence.plugins:register_ci_run_manager
+register_launchpad_api = localstack.pro.core.bootstrap.pods.launchpad.plugins:register_launchpad_api
+register_pickle_patches_runtime = localstack.pro.core.persistence.pickling.plugins:register_pickle_patches_runtime
+register_public_cloudpods_endpoints = localstack.pro.core.persistence.pods.plugins:register_public_cloudpods_endpoints
+register_remotes_pods_api = localstack.pro.core.persistence.plugins:register_remotes_pods_api
+register_reset_state_resource = localstack.pro.core.persistence.reset.plugins:register_reset_state_resource
+register_restricted_pods_api = localstack.pro.core.persistence.plugins:register_restricted_pods_api
+register_state_load_strategy = localstack.pro.core.persistence.snapshot.plugins:register_state_load_strategy
+register_state_resource = localstack.pro.core.persistence.snapshot.plugins:register_state_resource
+register_state_save_strategy = localstack.pro.core.persistence.snapshot.plugins:register_state_save_strategy
+setup_pro_infra = localstack.pro.core.plugins:setup_pro_infra
+
+[localstack.hooks.prepare_host]
+activate_pro_key_on_host = localstack.pro.core.plugins:activate_pro_key_on_host
+configure_extensions_dev_host = localstack.pro.core.extensions.plugins:configure_extensions_dev_host
+patch_community_pro_detection = localstack.pro.core.plugins:patch_community_pro_detection
+
+[localstack.lambda.runtime_executor]
+kubernetes = localstack.pro.core.services.lambda_.invocation.plugins:KubernetesRuntimeExecutorPlugin
+
+[localstack.openapi.spec]
+localstack.pro.core = localstack.pro.core.plugins:OASProCore
+
+[localstack.packages]
+amazon-mq/ext = localstack.pro.core.services.mq.plugins:active_mq_package
+ecr/ext = localstack.pro.core.services.ecr.plugins:registry_package
+glue/ext = localstack.pro.core.services.glue.plugins:glue_package
+hadoop/ext = localstack.pro.core.packages.plugins:hadoop_package
+hive/ext = localstack.pro.core.packages.plugins:hive_package
+iot-rule-engine/ext = localstack.pro.core.services.iot.plugins:iot_rule_engine_package
+k3d/ext = localstack.pro.core.services.eks.plugins:k3d_package
+kafka/ext = localstack.pro.core.services.kafka.plugins:kafka_package
+mqtt/ext = localstack.pro.core.services.iot.plugins:mosquitto_package
+mysql/ext = localstack.pro.core.packages.plugins:mariadb_package
+neo4j/ext = localstack.pro.core.services.neptune.plugins:neo4j_package
+postgres/ext = localstack.pro.core.packages.plugins:postgres_package
+pysiddhi/ext = localstack.pro.core.services.kinesisanalytics.plugins:pysiddhi_package
+qldb/ext = localstack.pro.core.services.qldb.plugins:partiql_package
+redis/ext = localstack.pro.core.services.elasticache.plugins:redis_package
+spark/ext = localstack.pro.core.packages.plugins:spark_package
+tinkerpop/ext = localstack.pro.core.services.neptune.plugins:tinkerpop_package
+trino/ext = localstack.pro.core.packages.plugins:trino_package
+
+[localstack.platform.plugin]
+certificates = localstack.pro.core.certificates.plugins:CertificatesPlugin
+chaos = localstack.pro.core.chaos.plugin:ChaosPlugin
+chaos-basic = localstack.pro.core.chaos.plugin:ChaosBasicPlugin
+ecs-firelens = localstack.pro.core.services.ecs.log_collectors.firelens:EcsFirelensPlatformPlugin
+ecs-k8s-task-executor = localstack.pro.core.services.ecs.plugins:EcsK8sPlatformPlugin
+fis-emulation = localstack.pro.core.services.fis.plugins:FisEmulationPlatformPlugin
+iam-enforcement = localstack.pro.core.services.iam.plugins:IamEnforcementPlugin
+iam-stream = localstack.pro.core.services.iam.plugins:IamStreamPlugin
+lambda-esm-kafka = localstack.pro.core.services.lambda_.event_source_mapping.plugins:KafkaEsmPollerPlugin
+non-default-partitions = localstack.pro.core.aws.plugins:NonDefaultPartitionPlugin
+pod-encryption = localstack.pro.core.persistence.pods.plugins:EncryptionPlugin
+replicator = localstack.pro.core.replicator.plugins:ReplicatorPlugin
+
+[localstack.plugins.cli]
+pro = localstack.pro.core.cli.localstack:ProCliPlugins
+
+[localstack.pods.remote]
+oras = localstack.pro.core.persistence.remotes.oras:CloudPodsRemoteOras
+platform = localstack.pro.core.persistence.remotes.remotes:CloudPodsRemotePlatform
+s3 = localstack.pro.core.persistence.remotes.s3:CloudPodsRemoteS3
+
+[localstack.pro.core.cloudformation.resource_providers]
+AWS::ACMPCA::Certificate = localstack.pro.core.services.acmpca.resource_providers.aws_acmpca_certificate_plugin:ACMPCACertificateProviderPlugin
+AWS::ACMPCA::CertificateAuthority = localstack.pro.core.services.acmpca.resource_providers.aws_acmpca_certificateauthority_plugin:ACMPCACertificateAuthorityProviderPlugin
+AWS::ACMPCA::CertificateAuthorityActivation = localstack.pro.core.services.acmpca.resource_providers.aws_acmpca_certificateauthorityactivation_plugin:ACMPCACertificateAuthorityActivationProviderPlugin
+AWS::ACMPCA::Permission = localstack.pro.core.services.acmpca.resource_providers.aws_acmpca_permission_plugin:ACMPCAPermissionProviderPlugin
+AWS::Amplify::App = localstack.pro.core.services.amplify.resource_providers.aws_amplify_app_plugin:AmplifyAppProviderPlugin
+AWS::ApiGateway::Authorizer = localstack.pro.core.services.apigateway.resource_providers.aws_apigateway_authorizer_plugin:ApiGatewayAuthorizerProviderPlugin
+AWS::ApiGateway::VpcLink = localstack.pro.core.services.apigateway.resource_providers.aws_apigateway_vpclink_plugin:ApiGatewayVpcLinkProviderPlugin
+AWS::ApiGatewayV2::Api = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_api_plugin:ApiGatewayV2ApiProviderPlugin
+AWS::ApiGatewayV2::ApiMapping = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_apimapping_plugin:ApiGatewayV2ApiMappingProviderPlugin
+AWS::ApiGatewayV2::Authorizer = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_authorizer_plugin:ApiGatewayV2AuthorizerProviderPlugin
+AWS::ApiGatewayV2::Deployment = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_deployment_plugin:ApiGatewayV2DeploymentProviderPlugin
+AWS::ApiGatewayV2::DomainName = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_domainname_plugin:ApiGatewayV2DomainNameProviderPlugin
+AWS::ApiGatewayV2::Integration = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_integration_plugin:ApiGatewayV2IntegrationProviderPlugin
+AWS::ApiGatewayV2::IntegrationResponse = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_integrationresponse_plugin:ApiGatewayV2IntegrationResponseProviderPlugin
+AWS::ApiGatewayV2::Route = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_route_plugin:ApiGatewayV2RouteProviderPlugin
+AWS::ApiGatewayV2::RouteResponse = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_routeresponse_plugin:ApiGatewayV2RouteResponseProviderPlugin
+AWS::ApiGatewayV2::Stage = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_stage_plugin:ApiGatewayV2StageProviderPlugin
+AWS::ApiGatewayV2::VpcLink = localstack.pro.core.services.apigatewayv2.resource_providers.aws_apigatewayv2_vpclink_plugin:ApiGatewayV2VpcLinkProviderPlugin
+AWS::AppConfig::Application = localstack.pro.core.services.appconfig.resource_providers.aws_appconfig_application_plugin:AppConfigApplicationProviderPlugin
+AWS::AppConfig::ConfigurationProfile = localstack.pro.core.services.appconfig.resource_providers.aws_appconfig_configurationprofile_plugin:AppConfigConfigurationProfileProviderPlugin
+AWS::AppConfig::Deployment = localstack.pro.core.services.appconfig.resource_providers.aws_appconfig_deployment_plugin:AppConfigDeploymentProviderPlugin
+AWS::AppConfig::DeploymentStrategy = localstack.pro.core.services.appconfig.resource_providers.aws_appconfig_deploymentstrategy_plugin:AppConfigDeploymentStrategyProviderPlugin
+AWS::AppConfig::Environment = localstack.pro.core.services.appconfig.resource_providers.aws_appconfig_environment_plugin:AppConfigEnvironmentProviderPlugin
+AWS::AppConfig::HostedConfigurationVersion = localstack.pro.core.services.appconfig.resource_providers.aws_appconfig_hostedconfigurationversion_plugin:AppConfigHostedConfigurationVersionProviderPlugin
+AWS::AppSync::ApiKey = localstack.pro.core.services.appsync.resource_providers.aws_appsync_apikey_plugin:AppSyncApiKeyProviderPlugin
+AWS::AppSync::DataSource = localstack.pro.core.services.appsync.resource_providers.aws_appsync_datasource_plugin:AppSyncDataSourceProviderPlugin
+AWS::AppSync::FunctionConfiguration = localstack.pro.core.services.appsync.resource_providers.aws_appsync_functionconfiguration_plugin:AppSyncFunctionConfigurationProviderPlugin
+AWS::AppSync::GraphQLApi = localstack.pro.core.services.appsync.resource_providers.aws_appsync_graphqlapi_plugin:AppSyncGraphQLApiProviderPlugin
+AWS::AppSync::GraphQLSchema = localstack.pro.core.services.appsync.resource_providers.aws_appsync_graphqlschema_plugin:AppSyncGraphQLSchemaProviderPlugin
+AWS::AppSync::Resolver = localstack.pro.core.services.appsync.resource_providers.aws_appsync_resolver_plugin:AppSyncResolverProviderPlugin
+AWS::ApplicationAutoScaling::ScalableTarget = localstack.pro.core.services.applicationautoscaling.resource_providers.aws_applicationautoscaling_scalabletarget_plugin:ApplicationAutoScalingScalableTargetProviderPlugin
+AWS::ApplicationAutoScaling::ScalingPolicy = localstack.pro.core.services.applicationautoscaling.resource_providers.aws_applicationautoscaling_scalingpolicy_plugin:ApplicationAutoScalingScalingPolicyProviderPlugin
+AWS::Athena::DataCatalog = localstack.pro.core.services.athena.resource_providers.aws_athena_datacatalog_plugin:AthenaDataCatalogProviderPlugin
+AWS::Athena::NamedQuery = localstack.pro.core.services.athena.resource_providers.aws_athena_namedquery_plugin:AthenaNamedQueryProviderPlugin
+AWS::Athena::WorkGroup = localstack.pro.core.services.athena.resource_providers.aws_athena_workgroup_plugin:AthenaWorkGroupProviderPlugin
+AWS::Backup::BackupPlan = localstack.pro.core.services.backup.resource_providers.aws_backup_backupplan_plugin:BackupBackupPlanProviderPlugin
+AWS::Batch::ComputeEnvironment = localstack.pro.core.services.batch.resource_providers.aws_batch_computeenvironment_plugin:BatchComputeEnvironmentProviderPlugin
+AWS::Batch::JobDefinition = localstack.pro.core.services.batch.resource_providers.aws_batch_jobdefinition_plugin:BatchJobDefinitionProviderPlugin
+AWS::Batch::JobQueue = localstack.pro.core.services.batch.resource_providers.aws_batch_jobqueue_plugin:BatchJobQueueProviderPlugin
+AWS::CloudFormation::CustomResource = localstack.pro.core.services.cloudformation.resource_providers.aws_cloudformation_customresource_plugin:CloudFormationCustomResourceProviderPlugin
+AWS::CloudFront::CachePolicy = localstack.pro.core.services.cloudfront.resource_providers.aws_cloudfront_cachepolicy_plugin:CloudFrontCachePolicyProviderPlugin
+AWS::CloudFront::CloudFrontOriginAccessIdentity = localstack.pro.core.services.cloudfront.resource_providers.aws_cloudfront_cloudfrontoriginaccessidentity_plugin:CloudFrontCloudFrontOriginAccessIdentityProviderPlugin
+AWS::CloudFront::Distribution = localstack.pro.core.services.cloudfront.resource_providers.aws_cloudfront_distribution_plugin:CloudFrontDistributionProviderPlugin
+AWS::CloudFront::Function = localstack.pro.core.services.cloudfront.resource_providers.aws_cloudfront_function_plugin:CloudFrontFunctionProviderPlugin
+AWS::CloudFront::OriginAccessControl = localstack.pro.core.services.cloudfront.resource_providers.aws_cloudfront_originaccesscontrol_plugin:CloudFrontOriginAccessControlProviderPlugin
+AWS::CloudFront::OriginRequestPolicy = localstack.pro.core.services.cloudfront.resource_providers.aws_cloudfront_originrequestpolicy_plugin:CloudFrontOriginRequestPolicyProviderPlugin
+AWS::CloudFront::ResponseHeadersPolicy = localstack.pro.core.services.cloudfront.resource_providers.aws_cloudfront_responseheaderspolicy_plugin:CloudFrontResponseHeadersPolicyProviderPlugin
+AWS::CloudTrail::Trail = localstack.pro.core.services.cloudtrail.resource_providers.aws_cloudtrail_trail_plugin:CloudTrailTrailProviderPlugin
+AWS::CodeBuild::Project = localstack.pro.core.services.codebuild.resource_providers.aws_codebuild_project_plugin:CodeBuildProjectProviderPlugin
+AWS::CodeDeploy::Application = localstack.pro.core.services.codedeploy.resource_providers.aws_codedeploy_application_plugin:CodeDeployApplicationProviderPlugin
+AWS::CodeDeploy::DeploymentConfig = localstack.pro.core.services.codedeploy.resource_providers.aws_codedeploy_deploymentconfig_plugin:CodeDeployDeploymentConfigProviderPlugin
+AWS::CodeDeploy::DeploymentGroup = localstack.pro.core.services.codedeploy.resource_providers.aws_codedeploy_deploymentgroup_plugin:CodeDeployDeploymentGroupProviderPlugin
+AWS::CodePipeline::Pipeline = localstack.pro.core.services.codepipeline.resource_providers.aws_codepipeline_pipeline_plugin:CodePipelinePipelineProviderPlugin
+AWS::Cognito::IdentityPool = localstack.pro.core.services.cognito.resource_providers.aws_cognito_identitypool_plugin:CognitoIdentityPoolProviderPlugin
+AWS::Cognito::IdentityPoolRoleAttachment = localstack.pro.core.services.cognito.resource_providers.aws_cognito_identitypoolroleattachment_plugin:CognitoIdentityPoolRoleAttachmentProviderPlugin
+AWS::Cognito::UserPool = localstack.pro.core.services.cognito.resource_providers.aws_cognito_userpool_plugin:CognitoUserPoolProviderPlugin
+AWS::Cognito::UserPoolClient = localstack.pro.core.services.cognito.resource_providers.aws_cognito_userpoolclient_plugin:CognitoUserPoolClientProviderPlugin
+AWS::Cognito::UserPoolDomain = localstack.pro.core.services.cognito.resource_providers.aws_cognito_userpooldomain_plugin:CognitoUserPoolDomainProviderPlugin
+AWS::Cognito::UserPoolGroup = localstack.pro.core.services.cognito.resource_providers.aws_cognito_userpoolgroup_plugin:CognitoUserPoolGroupProviderPlugin
+AWS::Cognito::UserPoolIdentityProvider = localstack.pro.core.services.cognito.resource_providers.aws_cognito_userpoolidentityprovider_plugin:CognitoUserPoolIdentityProviderProviderPlugin
+AWS::Cognito::UserPoolResourceServer = localstack.pro.core.services.cognito.resource_providers.aws_cognito_userpoolresourceserver_plugin:CognitoUserPoolResourceServerProviderPlugin
+AWS::DMS::Endpoint = localstack.pro.core.services.dms.resource_providers.aws_dms_endpoint_plugin:DMSEndpointProviderPlugin
+AWS::DMS::ReplicationConfig = localstack.pro.core.services.dms.resource_providers.aws_dms_replicationconfig_plugin:DMSReplicationConfigProviderPlugin
+AWS::DMS::ReplicationInstance = localstack.pro.core.services.dms.resource_providers.aws_dms_replicationinstance_plugin:DMSReplicationInstanceProviderPlugin
+AWS::DMS::ReplicationSubnetGroup = localstack.pro.core.services.dms.resource_providers.aws_dms_replicationsubnetgroup_plugin:DMSReplicationSubnetGroupProviderPlugin
+AWS::DMS::ReplicationTask = localstack.pro.core.services.dms.resource_providers.aws_dms_replicationtask_plugin:DMSReplicationTaskProviderPlugin
+AWS::DocDB::DBCluster = localstack.pro.core.services.docdb.resource_providers.aws_docdb_dbcluster_plugin:DocDBDBClusterProviderPlugin
+AWS::DocDB::DBClusterParameterGroup = localstack.pro.core.services.docdb.resource_providers.aws_docdb_dbclusterparametergroup_plugin:DocDBDBClusterParameterGroupProviderPlugin
+AWS::DocDB::DBInstance = localstack.pro.core.services.docdb.resource_providers.aws_docdb_dbinstance_plugin:DocDBDBInstanceProviderPlugin
+AWS::DocDB::DBSubnetGroup = localstack.pro.core.services.docdb.resource_providers.aws_docdb_dbsubnetgroup_plugin:DocDBDBSubnetGroupProviderPlugin
+AWS::EC2::EIP = localstack.pro.core.services.ec2.resource_providers.aws_ec2_eip_plugin:EC2EIPProviderPlugin
+AWS::EC2::LaunchTemplate = localstack.pro.core.services.ec2.resource_providers.aws_ec2_launchtemplate_plugin:EC2LaunchTemplateProviderPlugin
+AWS::EC2::SecurityGroupEgress = localstack.pro.core.services.ec2.resource_providers.aws_ec2_securitygroupegress_plugin:EC2SecurityGroupEgressProviderPlugin
+AWS::EC2::SecurityGroupIngress = localstack.pro.core.services.ec2.resource_providers.aws_ec2_securitygroupingress_plugin:EC2SecurityGroupIngressProviderPlugin
+AWS::EC2::VPCCidrBlock = localstack.pro.core.services.ec2.resource_providers.aws_ec2_vpccidrblock_plugin:EC2VPCCidrBlockProviderPlugin
+AWS::EC2::VPCEndpoint = localstack.pro.core.services.ec2.resource_providers.aws_ec2_vpcendpoint_plugin:EC2VPCEndpointProviderPlugin
+AWS::EC2::VPCEndpointService = localstack.pro.core.services.ec2.resource_providers.aws_ec2_vpcendpointservice_plugin:EC2VPCEndpointServiceProviderPlugin
+AWS::ECR::Repository = localstack.pro.core.services.ecr.resource_providers.aws_ecr_repository_plugin:ECRRepositoryProviderPlugin
+AWS::ECS::CapacityProvider = localstack.pro.core.services.ecs.resource_providers.aws_ecs_capacityprovider_plugin:ECSCapacityProviderProviderPlugin
+AWS::ECS::Cluster = localstack.pro.core.services.ecs.resource_providers.aws_ecs_cluster_plugin:ECSClusterProviderPlugin
+AWS::ECS::ClusterCapacityProviderAssociations = localstack.pro.core.services.ecs.resource_providers.aws_ecs_clustercapacityproviderassociations_plugin:ECSClusterCapacityProviderAssociationsProviderPlugin
+AWS::ECS::Service = localstack.pro.core.services.ecs.resource_providers.aws_ecs_service_plugin:ECSServiceProviderPlugin
+AWS::ECS::TaskDefinition = localstack.pro.core.services.ecs.resource_providers.aws_ecs_taskdefinition_plugin:ECSTaskDefinitionProviderPlugin
+AWS::EFS::AccessPoint = localstack.pro.core.services.efs.resource_providers.aws_efs_accesspoint_plugin:EFSAccessPointProviderPlugin
+AWS::EFS::FileSystem = localstack.pro.core.services.efs.resource_providers.aws_efs_filesystem_plugin:EFSFileSystemProviderPlugin
+AWS::EFS::MountTarget = localstack.pro.core.services.efs.resource_providers.aws_efs_mounttarget_plugin:EFSMountTargetProviderPlugin
+AWS::EKS::Cluster = localstack.pro.core.services.eks.resource_providers.aws_eks_cluster_plugin:EKSClusterProviderPlugin
+AWS::EKS::FargateProfile = localstack.pro.core.services.eks.resource_providers.aws_eks_fargateprofile_plugin:EKSFargateProfileProviderPlugin
+AWS::EKS::Nodegroup = localstack.pro.core.services.eks.resource_providers.aws_eks_nodegroup_plugin:EKSNodegroupProviderPlugin
+AWS::ElastiCache::CacheCluster = localstack.pro.core.services.elasticache.resource_providers.aws_elasticache_cachecluster_plugin:ElastiCacheCacheClusterProviderPlugin
+AWS::ElastiCache::ParameterGroup = localstack.pro.core.services.elasticache.resource_providers.aws_elasticache_parametergroup_plugin:ElastiCacheParameterGroupProviderPlugin
+AWS::ElastiCache::ReplicationGroup = localstack.pro.core.services.elasticache.resource_providers.aws_elasticache_replicationgroup_plugin:ElastiCacheReplicationGroupProviderPlugin
+AWS::ElastiCache::SecurityGroup = localstack.pro.core.services.elasticache.resource_providers.aws_elasticache_securitygroup_plugin:ElastiCacheSecurityGroupProviderPlugin
+AWS::ElastiCache::SubnetGroup = localstack.pro.core.services.elasticache.resource_providers.aws_elasticache_subnetgroup_plugin:ElastiCacheSubnetGroupProviderPlugin
+AWS::ElasticBeanstalk::Application = localstack.pro.core.services.elasticbeanstalk.resource_providers.aws_elasticbeanstalk_application_plugin:ElasticBeanstalkApplicationProviderPlugin
+AWS::ElasticBeanstalk::ApplicationVersion = localstack.pro.core.services.elasticbeanstalk.resource_providers.aws_elasticbeanstalk_applicationversion_plugin:ElasticBeanstalkApplicationVersionProviderPlugin
+AWS::ElasticBeanstalk::ConfigurationTemplate = localstack.pro.core.services.elasticbeanstalk.resource_providers.aws_elasticbeanstalk_configurationtemplate_plugin:ElasticBeanstalkConfigurationTemplateProviderPlugin
+AWS::ElasticBeanstalk::Environment = localstack.pro.core.services.elasticbeanstalk.resource_providers.aws_elasticbeanstalk_environment_plugin:ElasticBeanstalkEnvironmentProviderPlugin
+AWS::ElasticLoadBalancingV2::Listener = localstack.pro.core.services.elasticloadbalancingv2.resource_providers.aws_elasticloadbalancingv2_listener_plugin:ElasticLoadBalancingV2ListenerProviderPlugin
+AWS::ElasticLoadBalancingV2::ListenerRule = localstack.pro.core.services.elasticloadbalancingv2.resource_providers.aws_elasticloadbalancingv2_listenerrule_plugin:ElasticLoadBalancingV2ListenerRuleProviderPlugin
+AWS::ElasticLoadBalancingV2::LoadBalancer = localstack.pro.core.services.elasticloadbalancingv2.resource_providers.aws_elasticloadbalancingv2_loadbalancer_plugin:ElasticLoadBalancingV2LoadBalancerProviderPlugin
+AWS::ElasticLoadBalancingV2::TargetGroup = localstack.pro.core.services.elasticloadbalancingv2.resource_providers.aws_elasticloadbalancingv2_targetgroup_plugin:ElasticLoadBalancingV2TargetGroupProviderPlugin
+AWS::Glue::Classifier = localstack.pro.core.services.glue.resource_providers.aws_glue_classifier_plugin:GlueClassifierProviderPlugin
+AWS::Glue::Connection = localstack.pro.core.services.glue.resource_providers.aws_glue_connection_plugin:GlueConnectionProviderPlugin
+AWS::Glue::Crawler = localstack.pro.core.services.glue.resource_providers.aws_glue_crawler_plugin:GlueCrawlerProviderPlugin
+AWS::Glue::Database = localstack.pro.core.services.glue.resource_providers.aws_glue_database_plugin:GlueDatabaseProviderPlugin
+AWS::Glue::Job = localstack.pro.core.services.glue.resource_providers.aws_glue_job_plugin:GlueJobProviderPlugin
+AWS::Glue::Registry = localstack.pro.core.services.glue.resource_providers.aws_glue_registry_plugin:GlueRegistryProviderPlugin
+AWS::Glue::Schema = localstack.pro.core.services.glue.resource_providers.aws_glue_schema_plugin:GlueSchemaProviderPlugin
+AWS::Glue::SchemaVersion = localstack.pro.core.services.glue.resource_providers.aws_glue_schemaversion_plugin:GlueSchemaVersionProviderPlugin
+AWS::Glue::SchemaVersionMetadata = localstack.pro.core.services.glue.resource_providers.aws_glue_schemaversionmetadata_plugin:GlueSchemaVersionMetadataProviderPlugin
+AWS::Glue::Table = localstack.pro.core.services.glue.resource_providers.aws_glue_table_plugin:GlueTableProviderPlugin
+AWS::Glue::Trigger = localstack.pro.core.services.glue.resource_providers.aws_glue_trigger_plugin:GlueTriggerProviderPlugin
+AWS::Glue::Workflow = localstack.pro.core.services.glue.resource_providers.aws_glue_workflow_plugin:GlueWorkflowProviderPlugin
+AWS::IoT::Certificate = localstack.pro.core.services.iot.resource_providers.aws_iot_certificate_plugin:IoTCertificateProviderPlugin
+AWS::IoT::Policy = localstack.pro.core.services.iot.resource_providers.aws_iot_policy_plugin:IoTPolicyProviderPlugin
+AWS::IoT::RoleAlias = localstack.pro.core.services.iot.resource_providers.aws_iot_rolealias_plugin:IoTRoleAliasProviderPlugin
+AWS::IoT::Thing = localstack.pro.core.services.iot.resource_providers.aws_iot_thing_plugin:IoTThingProviderPlugin
+AWS::IoT::TopicRule = localstack.pro.core.services.iot.resource_providers.aws_iot_topicrule_plugin:IoTTopicRuleProviderPlugin
+AWS::IoTAnalytics::Channel = localstack.pro.core.services.iotanalytics.resource_providers.aws_iotanalytics_channel_plugin:IoTAnalyticsChannelProviderPlugin
+AWS::IoTAnalytics::Dataset = localstack.pro.core.services.iotanalytics.resource_providers.aws_iotanalytics_dataset_plugin:IoTAnalyticsDatasetProviderPlugin
+AWS::IoTAnalytics::Datastore = localstack.pro.core.services.iotanalytics.resource_providers.aws_iotanalytics_datastore_plugin:IoTAnalyticsDatastoreProviderPlugin
+AWS::IoTAnalytics::Pipeline = localstack.pro.core.services.iotanalytics.resource_providers.aws_iotanalytics_pipeline_plugin:IoTAnalyticsPipelineProviderPlugin
+AWS::KinesisAnalytics::Application = localstack.pro.core.services.kinesisanalytics.resource_providers.aws_kinesisanalytics_application_plugin:KinesisAnalyticsApplicationProviderPlugin
+AWS::KinesisAnalytics::ApplicationOutput = localstack.pro.core.services.kinesisanalytics.resource_providers.aws_kinesisanalytics_applicationoutput_plugin:KinesisAnalyticsApplicationOutputProviderPlugin
+AWS::KinesisAnalyticsV2::Application = localstack.pro.core.services.kinesisanalyticsv2.resource_providers.aws_kinesisanalyticsv2_application_plugin:KinesisAnalyticsV2ApplicationProviderPlugin
+AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption = localstack.pro.core.services.kinesisanalyticsv2.resource_providers.aws_kinesisanalyticsv2_applicationcloudwatchloggingoption_plugin:KinesisAnalyticsV2ApplicationCloudWatchLoggingOptionProviderPlugin
+AWS::MSK::Cluster = localstack.pro.core.services.kafka.resource_providers.aws_msk_cluster_plugin:MSKClusterProviderPlugin
+AWS::MWAA::Environment = localstack.pro.core.services.mwaa.resource_providers.aws_mwaa_environment_plugin:MWAAEnvironmentProviderPlugin
+AWS::Neptune::DBCluster = localstack.pro.core.services.neptune.resource_providers.aws_neptune_dbcluster_plugin:NeptuneDBClusterProviderPlugin
+AWS::Neptune::DBClusterParameterGroup = localstack.pro.core.services.neptune.resource_providers.aws_neptune_dbclusterparametergroup_plugin:NeptuneDBClusterParameterGroupProviderPlugin
+AWS::Neptune::DBInstance = localstack.pro.core.services.neptune.resource_providers.aws_neptune_dbinstance_plugin:NeptuneDBInstanceProviderPlugin
+AWS::Neptune::DBParameterGroup = localstack.pro.core.services.neptune.resource_providers.aws_neptune_dbparametergroup_plugin:NeptuneDBParameterGroupProviderPlugin
+AWS::Neptune::DBSubnetGroup = localstack.pro.core.services.neptune.resource_providers.aws_neptune_dbsubnetgroup_plugin:NeptuneDBSubnetGroupProviderPlugin
+AWS::Pipes::Pipe = localstack.pro.core.services.pipes.resource_providers.aws_pipes_pipe_plugin:PipesPipeProviderPlugin
+AWS::QLDB::Ledger = localstack.pro.core.services.qldb.resource_providers.aws_qldb_ledger_plugin:QLDBLedgerProviderPlugin
+AWS::RDS::DBCluster = localstack.pro.core.services.rds.resource_providers.aws_rds_dbcluster_plugin:RDSDBClusterProviderPlugin
+AWS::RDS::DBClusterParameterGroup = localstack.pro.core.services.rds.resource_providers.aws_rds_dbclusterparametergroup_plugin:RDSDBClusterParameterGroupProviderPlugin
+AWS::RDS::DBInstance = localstack.pro.core.services.rds.resource_providers.aws_rds_dbinstance_plugin:RDSDBInstanceProviderPlugin
+AWS::RDS::DBParameterGroup = localstack.pro.core.services.rds.resource_providers.aws_rds_dbparametergroup_plugin:RDSDBParameterGroupProviderPlugin
+AWS::RDS::DBProxy = localstack.pro.core.services.rds.resource_providers.aws_rds_dbproxy_plugin:RDSDBProxyProviderPlugin
+AWS::RDS::DBProxyTargetGroup = localstack.pro.core.services.rds.resource_providers.aws_rds_dbproxytargetgroup_plugin:RDSDBProxyTargetGroupProviderPlugin
+AWS::RDS::DBSubnetGroup = localstack.pro.core.services.rds.resource_providers.aws_rds_dbsubnetgroup_plugin:RDSDBSubnetGroupProviderPlugin
+AWS::RDS::GlobalCluster = localstack.pro.core.services.rds.resource_providers.aws_rds_globalcluster_plugin:RDSGlobalClusterProviderPlugin
+AWS::Redshift::ClusterParameterGroup = localstack.pro.core.services.redshift.resource_providers.aws_redshift_clusterparametergroup_plugin:RedshiftClusterParameterGroupProviderPlugin
+AWS::Redshift::ClusterSecurityGroup = localstack.pro.core.services.redshift.resource_providers.aws_redshift_clustersecuritygroup_plugin:RedshiftClusterSecurityGroupProviderPlugin
+AWS::Redshift::ClusterSubnetGroup = localstack.pro.core.services.redshift.resource_providers.aws_redshift_clustersubnetgroup_plugin:RedshiftClusterSubnetGroupProviderPlugin
+AWS::Route53::HostedZone = localstack.pro.core.services.route53.resource_providers.aws_route53_hostedzone_plugin:Route53HostedZoneProviderPlugin
+AWS::SES::ReceiptRule = localstack.pro.core.services.ses.resource_providers.aws_ses_receiptrule_plugin:SESReceiptRuleProviderPlugin
+AWS::SES::ReceiptRuleSet = localstack.pro.core.services.ses.resource_providers.aws_ses_receiptruleset_plugin:SESReceiptRuleSetProviderPlugin
+AWS::SES::Template = localstack.pro.core.services.ses.resource_providers.aws_ses_template_plugin:SESTemplateProviderPlugin
+AWS::SageMaker::Endpoint = localstack.pro.core.services.sagemaker.resource_providers.aws_sagemaker_endpoint_plugin:SageMakerEndpointProviderPlugin
+AWS::SageMaker::EndpointConfig = localstack.pro.core.services.sagemaker.resource_providers.aws_sagemaker_endpointconfig_plugin:SageMakerEndpointConfigProviderPlugin
+AWS::SageMaker::Model = localstack.pro.core.services.sagemaker.resource_providers.aws_sagemaker_model_plugin:SageMakerModelProviderPlugin
+AWS::SecretsManager::SecretTargetAttachment = localstack.pro.core.services.secretsmanager.resource_providers.aws_secretsmanager_secrettargetattachment_plugin:SecretsManagerSecretTargetAttachmentProviderPlugin
+AWS::VerifiedPermissions::IdentitySource = localstack.pro.core.services.verifiedpermissions.resource_providers.aws_verifiedpermissions_identitysource_plugin:VerifiedPermissionsIdentitySourceProviderPlugin
+AWS::VerifiedPermissions::Policy = localstack.pro.core.services.verifiedpermissions.resource_providers.aws_verifiedpermissions_policy_plugin:VerifiedPermissionsPolicyProviderPlugin
+AWS::VerifiedPermissions::PolicyStore = localstack.pro.core.services.verifiedpermissions.resource_providers.aws_verifiedpermissions_policystore_plugin:VerifiedPermissionsPolicyStoreProviderPlugin
+AWS::VerifiedPermissions::PolicyTemplate = localstack.pro.core.services.verifiedpermissions.resource_providers.aws_verifiedpermissions_policytemplate_plugin:VerifiedPermissionsPolicyTemplateProviderPlugin
+AWS::WAFv2::IPSet = localstack.pro.core.services.wafv2.resource_providers.aws_wafv2_ipset_plugin:WAFv2IPSetProviderPlugin
+AWS::WAFv2::LoggingConfiguration = localstack.pro.core.services.wafv2.resource_providers.aws_wafv2_loggingconfiguration_plugin:WAFv2LoggingConfigurationProviderPlugin
+AWS::WAFv2::WebACL = localstack.pro.core.services.wafv2.resource_providers.aws_wafv2_webacl_plugin:WAFv2WebACLProviderPlugin
+AWS::WAFv2::WebACLAssociation = localstack.pro.core.services.wafv2.resource_providers.aws_wafv2_webaclassociation_plugin:WAFv2WebACLAssociationProviderPlugin
+
+[localstack.pro.core.services.appsync.authorizers]
+api_key = localstack.pro.core.services.appsync.authorizers.plugins:AppSyncApiKeyAuthorizerPlugin
+cognito = localstack.pro.core.services.appsync.authorizers.plugins:AppSyncCognitoAuthorizerPlugin
+iam = localstack.pro.core.services.appsync.authorizers.plugins:AppSyncIAMAuthorizerPlugin
+lambda = localstack.pro.core.services.appsync.authorizers.plugins:AppSyncLambdaAuthorizerPlugin
+oidc = localstack.pro.core.services.appsync.authorizers.plugins:AppSyncOIDCAuthorizerPlugin
+
+[localstack.services.codepipeline.plugins]
+approval.aws.manual.1 = localstack.pro.core.services.codepipeline.plugins:Name
+build.aws.codebuild.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineCodeBuildActionPlugin
+deploy.aws.cloudformation.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineCFNDeployPlugin
+deploy.aws.codedeploytoecs.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineCodeDeployBlueGreenPlugin
+deploy.aws.ecs.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineEcsDeployActionPlugin
+deploy.aws.s3.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineS3DeployActionPlugin
+invoke.aws.lambda.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineLambdaInvokeActionPlugin
+source.aws.codestarsourceconnection.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineCodeStarSourceConnectionActionPlugin
+source.aws.ecr.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineECRSourceActionPlugin
+source.aws.s3.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineS3SourceActionPlugin
+test.aws.codebuild.1 = localstack.pro.core.services.codepipeline.plugins:CodePipelineCodeBuildTestActionPlugin
+
+[localstack.services.iam.plugins]
+apigateway = localstack.pro.core.services.apigateway.iam:ApiGatewayIAMPlugin
+backup = localstack.pro.core.services.backup.iam:BackupIAMPlugin
+cloudformation = localstack.pro.core.services.cloudformation.iam:CloudformationIAMPlugin
+dynamodb = localstack.pro.core.services.dynamodb.iam:DynamoDBIAMPlugin
+ecr = localstack.pro.core.services.ecr.iam:ECRIAMPlugin
+efs = localstack.pro.core.services.efs.iam:EFSIAMPlugin
+events = localstack.pro.core.services.events.iam:EventsIAMPlugin
+iam = localstack.pro.core.services.iam.iam:IAMIAMPlugin
+kinesis = localstack.pro.core.services.kinesis.iam:KinesisIAMPlugin
+kms = localstack.pro.core.services.kms.iam:KMSIAMPlugin
+lambda = localstack.pro.core.services.lambda_.iam:LambdaIAMPlugin
+logs = localstack.pro.core.services.logs.iam:LogsIAMPlugin
+s3 = localstack.pro.core.services.s3.iam:S3IAMPlugin
+secretsmanager = localstack.pro.core.services.secretsmanager.iam:SecretsManagerIAMPlugin
+sns = localstack.pro.core.services.sns.iam:SNSIAMPlugin
+sqs = localstack.pro.core.services.sqs.iam:SQSIAMPlugin
+ssm = localstack.pro.core.services.ssm.iam:SSMIAMPlugin
+sts = localstack.pro.core.services.sts.iam:STSIAMPlugin
