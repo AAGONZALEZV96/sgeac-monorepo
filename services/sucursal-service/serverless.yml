@@ -1,16 +1,96 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: lizzardy
-# "service" is the name of this project. This will also be added to your AWS resource names.
-service: api-http
+service: sucursal-service
 
 provider:
   name: aws
-  runtime: python3.12
+  runtime: python3.11
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:custom.tableName}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:PutItem"
+            - "dynamodb:GetItem"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:Scan"
+          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-localstack
+
+custom:
+  tableName: sgeac-sucursales-table-${self:provider.stage}
+  pythonRequirements:
+    dockerizePip: true
+  localstack:
+    stages:
+      - local
+    host: http://localhost
+    autostart: false
 
 functions:
-  hello:
-    handler: handler.hello
+  createSucursal:
+    handler: create_sucursal.handler
+    description: "Crea una nueva sucursal."
     events:
-      - httpApi:
-          path: /
+      - http:
+          path: /sucursales
+          method: post
+          cors: true
+
+  listSucursales:
+    handler: list_sucursales.handler
+    description: "Lista todas las sucursales."
+    events:
+      - http:
+          path: /sucursales
           method: get
+          cors: true
+
+  getSucursalById:
+    handler: get_sucursales.handler
+    description: "Obtiene una sucursal por su ID."
+    events:
+      - http:
+          path: /sucursales/{id}
+          method: get
+          cors: true
+
+  updateSucursal:
+    handler: update_sucursales.handler
+    description: "Actualiza los datos de una sucursal."
+    events:
+      - http:
+          path: /sucursales/{id}
+          method: put
+          cors: true
+
+  deleteSucursal:
+    handler: delete_sucursales.handler
+    description: "Elimina una sucursal."
+    events:
+      - http:
+          path: /sucursales/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    SucursalesTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

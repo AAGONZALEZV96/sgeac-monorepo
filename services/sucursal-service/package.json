@@ -1,0 +1,10 @@
+{
+  "name": "sucursal-service",
+  "version": "1.0.0",
+  "description": "Servicio para gestionar las sucursales de la academia.",
+  "devDependencies": {
+    "serverless-localstack": "^1.1.2",
+    "serverless-python-requirements": "^6.0.0",
+    "serverless-wsgi": "^3.0.4"
+  }
+}
