@@ -50,6 +50,15 @@ functions:
           method: get
           cors: true
 
+  listUsers:
+    handler: list_user.handler
+    description: "Lista todos los usuarios de la academia."
+    events:
+      - http:
+          path: /users
+          method: get # Usamos GET en la raíz del recurso /users
+          cors: true
+
   updateUser:
     handler: update_user.handler
     description: "Actualiza los datos de un usuario existente."
