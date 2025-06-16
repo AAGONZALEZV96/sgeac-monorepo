@@ -15,6 +15,11 @@ provider:
             - "dynamodb:PutItem"    # Permiso para create.py
             - "dynamodb:GetItem"    # ¡NUEVO! Permiso para get.py
           Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+        - Effect: "Allow" # ¡NUEVO! Permiso para que este servicio pueda LEER y ACTUALIZAR la tabla de Niveles
+          Action:
+            - "dynamodb:GetItem"    # Para leer los datos del nivel (cupos)
+            - "dynamodb:UpdateItem" # Para actualizar el contador de cupos_actuales
+          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/sgeac-niveles-table-${self:provider.stage}" # Apuntamos directamente a la tabla de niveles
 
 plugins:
   - serverless-python-requirements
@@ -76,6 +81,16 @@ functions:
       - http:
           path: /users/{id}
           method: delete # Usamos el método DELETE para eliminar
+          cors: true
+
+  asignarNivel:
+    handler: asignar_nivel.handler
+    description: "Asigna un alumno a un nuevo nivel, validando cupos."
+    events:
+      - http:
+          # Usamos un endpoint anidado: /users/{id del alumno}/nivel
+          path: /users/{id}/nivel
+          method: post # Usamos POST para indicar una acción de asignación
           cors: true
 
 resources:
