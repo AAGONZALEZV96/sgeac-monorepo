@@ -1,16 +1,96 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: lizzardy
-# "service" is the name of this project. This will also be added to your AWS resource names.
 service: roles-service
 
 provider:
   name: aws
-  runtime: python3.12
+  runtime: python3.11
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:custom.tableName}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:PutItem"
+            - "dynamodb:GetItem"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:Scan"
+          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-localstack
+
+custom:
+  tableName: sgeac-roles-table-${self:provider.stage}
+  pythonRequirements:
+    dockerizePip: true
+  localstack:
+    stages:
+      - local
+    host: http://localhost
+    autostart: false
 
 functions:
-  hello:
-    handler: handler.hello
+  createRol:
+    handler: create_rol.handler
+    description: "Crea un nuevo rol."
     events:
-      - httpApi:
-          path: /
+      - http:
+          path: /roles
+          method: post
+          cors: true
+
+  listRoles:
+    handler: list_rol.handler
+    description: "Lista todos los roles."
+    events:
+      - http:
+          path: /roles
           method: get
+          cors: true
+
+  getRolById:
+    handler: get_rol.handler
+    description: "Obtiene un rol por su ID."
+    events:
+      - http:
+          path: /roles/{id}
+          method: get
+          cors: true
+
+  updateRol:
+    handler: up_rol.handler
+    description: "Actualiza el nombre de un rol."
+    events:
+      - http:
+          path: /roles/{id}
+          method: put
+          cors: true
+
+  deleteRol:
+    handler: delete_rol.handler
+    description: "Elimina un rol."
+    events:
+      - http:
+          path: /roles/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    RolesTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
