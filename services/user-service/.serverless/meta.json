@@ -174,8 +174,8 @@
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
-                  "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                  "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                  "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
                 },
                 "Handler": "create_user.handler",
                 "Runtime": "python3.11",
@@ -203,8 +203,8 @@
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
-                  "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                  "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                  "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
                 },
                 "Handler": "get_user.handler",
                 "Runtime": "python3.11",
@@ -232,8 +232,8 @@
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
-                  "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                  "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                  "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
                 },
                 "Handler": "list_user.handler",
                 "Runtime": "python3.11",
@@ -261,8 +261,8 @@
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
-                  "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                  "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                  "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
                 },
                 "Handler": "update_user.handler",
                 "Runtime": "python3.11",
@@ -290,8 +290,8 @@
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
-                  "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                  "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                  "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
                 },
                 "Handler": "delete_user.handler",
                 "Runtime": "python3.11",
@@ -319,8 +319,8 @@
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
-                  "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                  "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                  "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
                 },
                 "Handler": "asignar_nivel.handler",
                 "Runtime": "python3.11",
@@ -872,7 +872,7 @@
                 "AsignarNivelLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1750054917762": {
+            "ApiGatewayDeployment1750110594604": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -1139,7 +1139,7 @@
           },
           "Outputs": {
             "ServerlessDeploymentBucketName": {
-              "Value": "serverless-framework-deployments-us-east-1-295afce0-5cee",
+              "Value": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
               "Export": {
                 "Name": "sls-user-service-local-ServerlessDeploymentBucketName"
               }
@@ -1666,8 +1666,8 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
               },
               "Handler": "create_user.handler",
               "Runtime": "python3.11",
@@ -1695,8 +1695,8 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
               },
               "Handler": "get_user.handler",
               "Runtime": "python3.11",
@@ -1724,8 +1724,8 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
               },
               "Handler": "list_user.handler",
               "Runtime": "python3.11",
@@ -1753,8 +1753,8 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
               },
               "Handler": "update_user.handler",
               "Runtime": "python3.11",
@@ -1782,8 +1782,8 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
               },
               "Handler": "delete_user.handler",
               "Runtime": "python3.11",
@@ -1811,8 +1811,8 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-                "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+                "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
               },
               "Handler": "asignar_nivel.handler",
               "Runtime": "python3.11",
@@ -2364,7 +2364,7 @@
               "AsignarNivelLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1750054917762": {
+          "ApiGatewayDeployment1750110594604": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -2631,7 +2631,7 @@
         },
         "Outputs": {
           "ServerlessDeploymentBucketName": {
-            "Value": "serverless-framework-deployments-us-east-1-295afce0-5cee",
+            "Value": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
             "Export": {
               "Name": "sls-user-service-local-ServerlessDeploymentBucketName"
             }
@@ -2742,57 +2742,57 @@
     "userName": "lizzardy",
     "serviceProviderAwsAccountId": "000000000000",
     "serviceProviderAwsCfStackName": "user-service-local",
-    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:000000000000:stack/user-service-local/59f4af34",
-    "serviceProviderAwsCfStackCreated": "2025-06-16T02:59:29.960Z",
-    "serviceProviderAwsCfStackUpdated": "2025-06-16T06:11:09.596Z",
-    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:000000000000:stack/user-service-local/0ac04695",
+    "serviceProviderAwsCfStackCreated": "2025-06-16T21:21:10.909Z",
+    "serviceProviderAwsCfStackUpdated": "2025-06-16T21:21:10.909Z",
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "ServerlessDeploymentBucketName",
-        "OutputValue": "serverless-framework-deployments-us-east-1-295afce0-5cee",
+        "OutputValue": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
         "ExportName": "sls-user-service-local-ServerlessDeploymentBucketName"
       },
       {
         "OutputKey": "CreateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-createUser:3",
+        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-createUser:1",
         "Description": "Current Lambda function version",
         "ExportName": "sls-user-service-local-CreateUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetUserByIdLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-getUserById:3",
+        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-getUserById:1",
         "Description": "Current Lambda function version",
         "ExportName": "sls-user-service-local-GetUserByIdLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "ListUsersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-listUsers:3",
+        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-listUsers:1",
         "Description": "Current Lambda function version",
         "ExportName": "sls-user-service-local-ListUsersLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "UpdateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-updateUser:3",
+        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-updateUser:1",
         "Description": "Current Lambda function version",
         "ExportName": "sls-user-service-local-UpdateUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "DeleteUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-deleteUser:3",
+        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-deleteUser:1",
         "Description": "Current Lambda function version",
         "ExportName": "sls-user-service-local-DeleteUserLambdaFunctionQualifiedArn"
       },
       {
-        "OutputKey": "ServiceEndpoint",
-        "OutputValue": "https://3orzatvawf.execute-api.localhost.localstack.cloud:4566/local",
-        "Description": "URL of the service endpoint",
-        "ExportName": "sls-user-service-local-ServiceEndpoint"
-      },
-      {
         "OutputKey": "AsignarNivelLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-asignarNivel:2",
+        "OutputValue": "arn:aws:lambda:us-east-1:000000000000:function:user-service-local-asignarNivel:1",
         "Description": "Current Lambda function version",
         "ExportName": "sls-user-service-local-AsignarNivelLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServiceEndpoint",
+        "OutputValue": "https://kfazpbuebz.execute-api.localhost.localstack.cloud:4566/local",
+        "Description": "URL of the service endpoint",
+        "ExportName": "sls-user-service-local-ServiceEndpoint"
       }
     ],
     "compiledCloudFormationTemplate": {
@@ -2933,8 +2933,8 @@
           "Type": "AWS::Lambda::Function",
           "Properties": {
             "Code": {
-              "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-              "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+              "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
             },
             "Handler": "create_user.handler",
             "Runtime": "python3.11",
@@ -2962,8 +2962,8 @@
           "Type": "AWS::Lambda::Function",
           "Properties": {
             "Code": {
-              "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-              "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+              "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
             },
             "Handler": "get_user.handler",
             "Runtime": "python3.11",
@@ -2991,8 +2991,8 @@
           "Type": "AWS::Lambda::Function",
           "Properties": {
             "Code": {
-              "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-              "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+              "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
             },
             "Handler": "list_user.handler",
             "Runtime": "python3.11",
@@ -3020,8 +3020,8 @@
           "Type": "AWS::Lambda::Function",
           "Properties": {
             "Code": {
-              "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-              "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+              "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
             },
             "Handler": "update_user.handler",
             "Runtime": "python3.11",
@@ -3049,8 +3049,8 @@
           "Type": "AWS::Lambda::Function",
           "Properties": {
             "Code": {
-              "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-              "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+              "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
             },
             "Handler": "delete_user.handler",
             "Runtime": "python3.11",
@@ -3078,8 +3078,8 @@
           "Type": "AWS::Lambda::Function",
           "Properties": {
             "Code": {
-              "S3Bucket": "serverless-framework-deployments-us-east-1-295afce0-5cee",
-              "S3Key": "serverless/user-service/local/1750054925361-2025-06-16T06:22:05.361Z/user-service.zip"
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
+              "S3Key": "serverless/user-service/local/1750110602712-2025-06-16T21:50:02.712Z/user-service.zip"
             },
             "Handler": "asignar_nivel.handler",
             "Runtime": "python3.11",
@@ -3631,7 +3631,7 @@
             "AsignarNivelLambdaPermissionApiGateway"
           ]
         },
-        "ApiGatewayDeployment1750054917762": {
+        "ApiGatewayDeployment1750110594604": {
           "Type": "AWS::ApiGateway::Deployment",
           "Properties": {
             "RestApiId": {
@@ -3898,7 +3898,7 @@
       },
       "Outputs": {
         "ServerlessDeploymentBucketName": {
-          "Value": "serverless-framework-deployments-us-east-1-295afce0-5cee",
+          "Value": "serverless-framework-deployments-us-east-1-d49a8e8e-f3b2",
           "Export": {
             "Name": "sls-user-service-local-ServerlessDeploymentBucketName"
           }

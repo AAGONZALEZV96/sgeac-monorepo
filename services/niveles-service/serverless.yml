@@ -68,7 +68,7 @@ functions:
           cors: true
 
   listNivelesByTipo:
-    handler: list_niveles_by_tipo.handler
+    handler: list_niveles_x_tipo.handler
     description: "Lista los niveles por tipo."
     events:
       - http: 
@@ -77,7 +77,7 @@ functions:
           cors: true
 
   listNivelesByTipoAndCupo:
-    handler: list_niveles_by_tipo_and_cupo.handler
+    handler: list_niveles_x_tipo_y_cupo.handler
     description: "Lista los niveles por tipo que tienen cupos disponibles."
     events:
       - http: 
@@ -95,7 +95,7 @@ functions:
           cors: true
           
   deleteNivel:
-    handler: del_nivel.handler
+    handler: delete_nivel.handler
     description: "Elimina un nivel por su ID."
     events:
       - http:
