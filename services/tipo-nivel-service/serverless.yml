@@ -1,0 +1,96 @@
+service: tipo-nivel-service
+
+provider:
+  name: aws
+  runtime: python3.11
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:custom.tableName}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:PutItem"
+            - "dynamodb:GetItem"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:Scan"
+          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-localstack
+
+custom:
+  tableName: sgeac-tipos-nivel-table-${self:provider.stage}
+  pythonRequirements:
+    dockerizePip: true
+  localstack:
+    stages:
+      - local
+    host: http://localhost
+    autostart: false
+
+functions:
+  createTipoNivel:
+    handler: create_t_nivel.handler
+    description: "Crea un nuevo tipo de nivel."
+    events:
+      - http:
+          path: /tipos-nivel
+          method: post
+          cors: true
+
+  listTiposNivel:
+    handler: list_t_nivel.handler
+    description: "Lista todos los tipos de nivel."
+    events:
+      - http:
+          path: /tipos-nivel
+          method: get
+          cors: true
+
+  getTipoNivelById:
+    handler: get_t_nivel.handler
+    description: "Obtiene un tipo de nivel por su ID."
+    events:
+      - http:
+          path: /tipos-nivel/{id}
+          method: get
+          cors: true
+
+  updateTipoNivel:
+    handler: up_t_nivel.handler
+    description: "Actualiza los datos de un tipo de nivel."
+    events:
+      - http:
+          path: /tipos-nivel/{id}
+          method: put
+          cors: true
+
+  deleteTipoNivel:
+    handler: delete_t_nivel.handler
+    description: "Elimina un tipo de nivel."
+    events:
+      - http:
+          path: /tipos-nivel/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    TiposNivelTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
