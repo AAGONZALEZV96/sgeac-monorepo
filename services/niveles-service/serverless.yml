@@ -1,16 +1,132 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: lizzardy
-# "service" is the name of this project. This will also be added to your AWS resource names.
 service: niveles-service
 
 provider:
   name: aws
-  runtime: python3.12
+  runtime: python3.11
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:custom.tableName}
+    TIPO_NIVEL_INDEX: ${self:custom.tipoNivelIndexName}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:PutItem"
+            - "dynamodb:GetItem"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:Scan"
+            - "dynamodb:Query"
+          Resource:
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}/index/${self:custom.tipoNivelIndexName}"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-localstack
+
+custom:
+  tableName: sgeac-niveles-table-${self:provider.stage}
+  tipoNivelIndexName: tipo-nivel-id-index
+  pythonRequirements:
+    dockerizePip: true
+  # --- BLOQUE FALTANTE AÑADIDO AQUÍ ---
+  localstack:
+    stages:
+      - local # Le dice al plugin que se active para el stage 'local'
+    host: http://localhost
+    autostart: false
 
 functions:
-  hello:
-    handler: handler.hello
+  createNivel:
+    handler: create_nivel.handler
+    description: "Crea un nuevo nivel con cupos."
     events:
-      - httpApi:
-          path: /
+      - http:
+          path: /niveles
+          method: post
+          cors: true
+  
+  getNivelById:
+    handler: get_nivel.handler
+    description: "Obtiene un nivel por su ID."
+    events:
+      - http:
+          path: /niveles/{id}
           method: get
+          cors: true
+
+  listNiveles:
+    handler: list_niveles.handler
+    description: "Lista todos los niveles."
+    events:
+      - http:
+          path: /niveles
+          method: get
+          cors: true
+
+  listNivelesByTipo:
+    handler: list_niveles_by_tipo.handler
+    description: "Lista los niveles por tipo."
+    events:
+      - http: 
+          path: /niveles/tipo/{tipo_id}
+          method: get
+          cors: true
+
+  listNivelesByTipoAndCupo:
+    handler: list_niveles_by_tipo_and_cupo.handler
+    description: "Lista los niveles por tipo que tienen cupos disponibles."
+    events:
+      - http: 
+          path: /niveles/tipo/{tipo_id}/cupo
+          method: get
+          cors: true
+
+  updateNivel:
+    handler: up_nivel.handler
+    description: "Actualiza un nivel existente."
+    events:
+      - http:
+          path: /niveles/{id}
+          method: put
+          cors: true
+          
+  deleteNivel:
+    handler: del_nivel.handler
+    description: "Elimina un nivel por su ID."
+    events:
+      - http:
+          path: /niveles/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    NivelesTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: tipo_nivel_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: ${self:custom.tipoNivelIndexName}
+            KeySchema:
+              - AttributeName: tipo_nivel_id
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
