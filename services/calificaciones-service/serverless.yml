@@ -39,7 +39,7 @@ custom:
 
 functions:
   registrarCalificacion:
-    handler: create.handler
+    handler: registro_calif.handler
     description: "Registra una nueva calificación para un alumno."
     events:
       - http:
@@ -48,7 +48,7 @@ functions:
           cors: true
 
   listarCalificacionesPorAlumno:
-    handler: list_by_alumno.handler
+    handler: list_x_alumno.handler
     description: "Lista todas las calificaciones de un alumno específico."
     events:
       - http:
@@ -56,8 +56,24 @@ functions:
           method: get
           cors: true
   
-  # Aquí podríamos añadir más funciones CRUD (get, update, delete) si son necesarias
+  updateCalificacion:
+    handler: up_calif.handler
+    description: "Actualiza una calificación existente."
+    events:
+      - http:
+          path: /calificaciones/{id} # Usamos el ID de la calificación
+          method: put
+          cors: true
 
+  
+  deleteCalificacion:
+    handler: delete_calif.handler
+    description: "Elimina una calificación por su ID."
+    events:
+      - http:
+          path: /calificaciones/{id}
+          method: delete
+          cors: true
 resources:
   Resources:
     CalificacionesTable:
