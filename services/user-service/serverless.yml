@@ -7,19 +7,27 @@ provider:
   region: us-east-1
   environment:
     DYNAMODB_TABLE: ${self:custom.tableName}
+    EMAIL_INDEX: ${self:custom.emailIndexName}
+    JWT_SECRET: "UNA_CLAVE_MUY_SECRETA_PARA_DESARROLLO"
+    
   iam:
     role:
       statements:
         - Effect: "Allow"
           Action:
-            - "dynamodb:PutItem"    # Permiso para create.py
-            - "dynamodb:GetItem"    # ¡NUEVO! Permiso para get.py
+            - "dynamodb:PutItem"   
+            - "dynamodb:GetItem"   
+            - "dynamodb:Scan"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:Query"
+
           Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
-        - Effect: "Allow" # ¡NUEVO! Permiso para que este servicio pueda LEER y ACTUALIZAR la tabla de Niveles
+        - Effect: "Allow" 
           Action:
-            - "dynamodb:GetItem"    # Para leer los datos del nivel (cupos)
-            - "dynamodb:UpdateItem" # Para actualizar el contador de cupos_actuales
-          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/sgeac-niveles-table-${self:provider.stage}" # Apuntamos directamente a la tabla de niveles
+            - "dynamodb:GetItem"   
+            - "dynamodb:UpdateItem" 
+          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/sgeac-niveles-table-${self:provider.stage}" 
 
 plugins:
   - serverless-python-requirements
@@ -27,6 +35,7 @@ plugins:
 
 custom:
   tableName: sgeac-users-table-${self:provider.stage}
+  emailIndexName: email-index
   pythonRequirements:
     dockerizePip: true
   localstack:
@@ -45,13 +54,13 @@ functions:
           method: post
           cors: true
 
-  # --- ¡NUEVA FUNCIÓN AÑADIDA AQUÍ! ---
+
   getUserById:
     handler: get_user.handler
     description: "Obtiene un usuario por su ID único."
     events:
       - http:
-          path: /users/{id} # La ruta incluye el parámetro 'id'
+          path: /users/{id} 
           method: get
           cors: true
 
@@ -61,7 +70,7 @@ functions:
     events:
       - http:
           path: /users
-          method: get # Usamos GET en la raíz del recurso /users
+          method: get
           cors: true
 
   updateUser:
@@ -70,17 +79,16 @@ functions:
     events:
       - http:
           path: /users/{id}
-          method: put  # Usamos el método PUT para actualizar
+          method: put 
           cors: true
 
-  # --- ¡NUEVA FUNCIÓN DE ELIMINACIÓN! ---
   deleteUser:
     handler: delete_user.handler
     description: "Elimina un usuario por su ID."
     events:
       - http:
           path: /users/{id}
-          method: delete # Usamos el método DELETE para eliminar
+          method: delete 
           cors: true
 
   asignarNivel:
@@ -88,9 +96,18 @@ functions:
     description: "Asigna un alumno a un nuevo nivel, validando cupos."
     events:
       - http:
-          # Usamos un endpoint anidado: /users/{id del alumno}/nivel
+          
           path: /users/{id}/nivel
-          method: post # Usamos POST para indicar una acción de asignación
+          method: post 
+          cors: true
+
+  login:
+    handler: login.handler
+    description: "Inicia sesión de un usuario y devuelve un JWT."
+    events:
+      - http:
+          path: /users/login
+          method: post
           cors: true
 
 resources:
@@ -102,9 +119,22 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
+          - AttributeName: email
+            AttributeType: S
         KeySchema:
           - AttributeName: id
             KeyType: HASH
+        
+        GlobalSecondaryIndexes:
+          - IndexName: ${self:custom.emailIndexName}
+            KeySchema:
+              - AttributeName: email
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
