@@ -1,0 +1,110 @@
+service: material-academico-service
+
+provider:
+  name: aws
+  runtime: python3.11
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:custom.tableName}
+    NIVEL_INDEX: ${self:custom.nivelIndexName}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:PutItem"
+            - "dynamodb:GetItem"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:Scan"
+            - "dynamodb:Query"
+          Resource:
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}/index/*"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-localstack
+
+custom:
+  tableName: sgeac-material-academico-table-${self:provider.stage}
+  nivelIndexName: nivel-id-index
+  pythonRequirements:
+    dockerizePip: true
+  localstack:
+    stages:
+      - local
+    host: http://localhost
+    autostart: false
+
+functions:
+  createMaterial:
+    handler: create.handler
+    description: "Sube un nuevo material académico para un nivel."
+    events:
+      - http:
+          path: /materiales
+          method: post
+          cors: true
+
+  listMaterialesPorNivel:
+    handler: list_by_nivel.handler
+    description: "Lista todos los materiales de un nivel específico."
+    events:
+      - http:
+          path: /niveles/{nivel_id}/materiales
+          method: get
+          cors: true
+
+  getMaterialById:
+    handler: get.handler
+    description: "Obtiene un material académico por su ID."
+    events:
+      - http:
+          path: /materiales/{id}
+          method: get
+          cors: true
+
+  updateMaterial:
+    handler: up_mat.handler
+    description: "Actualiza un material académico existente."
+    events:
+      - http:
+          path: /materiales/{id}
+          method: put
+          cors: true
+
+  deleteMaterial:
+    handler: delete.handler
+    description: "Elimina un material académico."
+    events:
+      - http:
+          path: /materiales/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    MaterialAcademicoTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: nivel_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: ${self:custom.nivelIndexName}
+            KeySchema:
+              - AttributeName: nivel_id
+                KeyType: HASH
+            Projection: { ProjectionType: ALL }
+            ProvisionedThroughput: { ReadCapacityUnits: 1, WriteCapacityUnits: 1 }
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
