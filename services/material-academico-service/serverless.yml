@@ -40,7 +40,7 @@ custom:
 
 functions:
   createMaterial:
-    handler: create.handler
+    handler: create_mat.handler
     description: "Sube un nuevo material académico para un nivel."
     events:
       - http:
@@ -49,7 +49,7 @@ functions:
           cors: true
 
   listMaterialesPorNivel:
-    handler: list_by_nivel.handler
+    handler: list_x_nivel.handler
     description: "Lista todos los materiales de un nivel específico."
     events:
       - http:
@@ -58,7 +58,7 @@ functions:
           cors: true
 
   getMaterialById:
-    handler: get.handler
+    handler: get_mat.handler
     description: "Obtiene un material académico por su ID."
     events:
       - http:
@@ -76,7 +76,7 @@ functions:
           cors: true
 
   deleteMaterial:
-    handler: delete.handler
+    handler: delete_mat.handler
     description: "Elimina un material académico."
     events:
       - http:
