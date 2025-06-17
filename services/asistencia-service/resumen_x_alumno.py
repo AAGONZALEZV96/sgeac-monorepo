@@ -1,17 +1,14 @@
-import os, json, boto3
+import os, json
+from utils import get_dynamodb_client
 
-IS_OFFLINE = os.environ.get('IS_OFFLINE', False)
-if IS_OFFLINE:
-    dynamodb_client = boto3.client("dynamodb", endpoint_url="http://localhost.localstack.cloud:4566")
-else:
-    dynamodb_client = boto3.client("dynamodb")
-
+DYNAMODB_CLIENT = get_dynamodb_client()
 TABLE_NAME = os.environ['DYNAMODB_TABLE']
 INDEX_NAME = os.environ['ALUMNO_INDEX']
 
 def handler(event, context):
     alumno_id = event['pathParameters']['alumno_id']
-    response = dynamodb_client.query(
+    
+    response = DYNAMODB_CLIENT.query(
         TableName=TABLE_NAME,
         IndexName=INDEX_NAME,
         KeyConditionExpression="alumno_id = :aid",
@@ -19,7 +16,6 @@ def handler(event, context):
     )
     items = response.get('Items', [])
     
-    # Contamos los estados
     presentes = sum(1 for item in items if item.get('estado', {}).get('S') == 'presente')
     ausentes = sum(1 for item in items if item.get('estado', {}).get('S') == 'ausente')
     

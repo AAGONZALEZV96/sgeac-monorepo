@@ -1,42 +1,29 @@
-import os
-import json
-import uuid
-import boto3
+import os, json, uuid
 from datetime import date
+from utils import get_dynamodb_client
 
-IS_OFFLINE = os.environ.get('IS_OFFLINE', False)
-if IS_OFFLINE:
-    dynamodb_client = boto3.client("dynamodb", endpoint_url="http://localhost.localstack.cloud:4566")
-else:
-    dynamodb_client = boto3.client("dynamodb")
-
+DYNAMODB_CLIENT = get_dynamodb_client()
 TABLE_NAME = os.environ['DYNAMODB_TABLE']
 
 def handler(event, context):
     data = json.loads(event.get("body", "{}"))
     
-    # Obtenemos todos los nuevos atributos
     alumno_id = data.get('alumno_id')
-    tipo_evaluacion = data.get('tipo_evaluacion') # ej: "NOTA-01"
-    descripcion = data.get('descripcion')
+    tipo_evaluacion = data.get('tipo_evaluacion')
     nota = data.get('nota')
-    comentarios = data.get('comentarios')
 
     if not all([alumno_id, tipo_evaluacion, nota is not None]):
-        return {"statusCode": 400, "body": json.dumps({"error": "Faltan atributos requeridos: alumno_id, tipo_evaluacion, nota."})}
-
-    calificacion_id = str(uuid.uuid4())
-    fecha_hoy = date.today().isoformat()
+        return {"statusCode": 400, "body": json.dumps({"error": "Faltan atributos requeridos."})}
 
     item = {
-        'id': {'S': calificacion_id},
+        'id': {'S': str(uuid.uuid4())},
         'alumno_id': {'S': alumno_id},
         'tipo_evaluacion': {'S': tipo_evaluacion},
-        'descripcion': {'S': descripcion or 'N/A'},
+        'descripcion': {'S': data.get('descripcion', 'N/A')},
         'nota': {'N': str(nota)},
-        'comentarios': {'S': comentarios or 'Sin comentarios.'},
-        'fecha': {'S': fecha_hoy}
+        'comentarios': {'S': data.get('comentarios', 'Sin comentarios.')},
+        'fecha': {'S': date.today().isoformat()}
     }
     
-    dynamodb_client.put_item(TableName=TABLE_NAME, Item=item)
-    return {"statusCode": 201, "body": json.dumps({"message": "Calificación registrada exitosamente.", "id": calificacion_id})}
+    DYNAMODB_CLIENT.put_item(TableName=TABLE_NAME, Item=item)
+    return {"statusCode": 201, "body": json.dumps({"message": "Calificación registrada exitosamente.", "id": item['id']['S']})}
