@@ -1,0 +1,84 @@
+service: calificaciones-service
+
+provider:
+  name: aws
+  runtime: python3.11
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:custom.tableName}
+    ALUMNO_INDEX: ${self:custom.alumnoIndexName}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:PutItem"
+            - "dynamodb:Query"
+            - "dynamodb:GetItem"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+          Resource:
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}/index/*"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-localstack
+
+custom:
+  tableName: sgeac-calificaciones-table-${self:provider.stage}
+  alumnoIndexName: alumno-id-index
+  pythonRequirements:
+    dockerizePip: true
+  localstack:
+    stages:
+      - local
+    host: http://localhost
+    autostart: false
+
+functions:
+  registrarCalificacion:
+    handler: create.handler
+    description: "Registra una nueva calificación para un alumno."
+    events:
+      - http:
+          path: /calificaciones
+          method: post
+          cors: true
+
+  listarCalificacionesPorAlumno:
+    handler: list_by_alumno.handler
+    description: "Lista todas las calificaciones de un alumno específico."
+    events:
+      - http:
+          path: /calificaciones/alumno/{alumno_id}
+          method: get
+          cors: true
+  
+  # Aquí podríamos añadir más funciones CRUD (get, update, delete) si son necesarias
+
+resources:
+  Resources:
+    CalificacionesTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: alumno_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: ${self:custom.alumnoIndexName}
+            KeySchema:
+              - AttributeName: alumno_id
+                KeyType: HASH
+            Projection: { ProjectionType: ALL }
+            ProvisionedThroughput: { ReadCapacityUnits: 1, WriteCapacityUnits: 1 }
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

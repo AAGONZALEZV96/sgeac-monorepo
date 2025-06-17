@@ -1,0 +1,9 @@
+{
+  "name": "tipo-nivel-service",
+  "version": "1.0.0",
+  "description": "Servicio para gestionar los tipos de nivel de la academia.",
+  "devDependencies": {
+    "serverless-localstack": "^1.1.2",
+    "serverless-python-requirements": "^6.0.0"
+  }
+}
