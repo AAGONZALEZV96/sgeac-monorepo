@@ -1,16 +1,101 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: lizzardy
-# "service" is the name of this project. This will also be added to your AWS resource names.
 service: asistencia-service
 
 provider:
   name: aws
-  runtime: python3.12
+  runtime: python3.11
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:custom.tableName}
+    ALUMNO_INDEX: ${self:custom.alumnoIndexName}
+    NIVEL_INDEX: ${self:custom.nivelIndexName}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:PutItem"
+            - "dynamodb:Query"
+            - "dynamodb:UpdateItem" # Para actualizar
+            - "dynamodb:DeleteItem" # Para borrar
+            - "dynamodb:Scan"       # Para listar todo
+          Resource:
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}/index/*"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-localstack
+
+custom:
+  tableName: sgeac-asistencias-table-${self:provider.stage}
+  alumnoIndexName: alumno-id-index
+  nivelIndexName: nivel-id-index
+  pythonRequirements:
+    dockerizePip: true
+  localstack:
+    stages:
+      - local
+    host: http://localhost
+    autostart: false
 
 functions:
-  hello:
-    handler: handler.hello
+  registrarAsistencia:
+    handler: registrar_asistencia.handler
+    description: "Registra la asistencia (presente/ausente) de un alumno en una fecha."
     events:
-      - httpApi:
-          path: /
+      - http:
+          path: /asistencia
+          method: post
+          cors: true
+
+  resumenPorAlumno:
+    handler: resumen_x_alumno.handler
+    description: "Devuelve el conteo de asistencias y faltas de un alumno."
+    events:
+      - http:
+          path: /asistencia/resumen/alumno/{alumno_id}
           method: get
+          cors: true
+
+  resumenPorNivel:
+    handler: resumen_x_nivel.handler
+    description: "Devuelve el conteo de asistencias y faltas de un nivel."
+    events:
+      - http:
+          path: /asistencia/resumen/nivel/{nivel_id}
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    AsistenciasTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: alumno_id # Atributo para el primer índice
+            AttributeType: S
+          - AttributeName: nivel_id  # Atributo para el segundo índice
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: ${self:custom.alumnoIndexName}
+            KeySchema:
+              - AttributeName: alumno_id
+                KeyType: HASH
+            Projection: { ProjectionType: ALL }
+            ProvisionedThroughput: { ReadCapacityUnits: 1, WriteCapacityUnits: 1 }
+          - IndexName: ${self:custom.nivelIndexName}
+            KeySchema:
+              - AttributeName: nivel_id
+                KeyType: HASH
+            Projection: { ProjectionType: ALL }
+            ProvisionedThroughput: { ReadCapacityUnits: 1, WriteCapacityUnits: 1 }
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

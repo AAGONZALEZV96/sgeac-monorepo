@@ -32,10 +32,9 @@ custom:
   tipoNivelIndexName: tipo-nivel-id-index
   pythonRequirements:
     dockerizePip: true
-  # --- BLOQUE FALTANTE AÑADIDO AQUÍ ---
   localstack:
     stages:
-      - local # Le dice al plugin que se active para el stage 'local'
+      - local
     host: http://localhost
     autostart: false
 
