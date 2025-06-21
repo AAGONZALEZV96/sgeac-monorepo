@@ -6,7 +6,7 @@ DYNAMODB_CLIENT = get_dynamodb_client()
 TABLE_NAME = os.environ['DYNAMODB_TABLE']
 
 def handler(event, context):
-    data = json.loads(event.get("body", "{}"))
+    data = json.loads(event.get("body", "{}")) 
     password = data.get('password')
 
     if not password:
@@ -17,7 +17,7 @@ def handler(event, context):
     item = {
         'id': {'S': str(uuid.uuid4())},
         'email': {'S': data.get('email')},
-        'password_hash': {'S': password_hash}, # Guardamos el hash
+        'password_hash': {'S': password_hash},
         'nombre': {'S': data.get('nombre')},
         'rol': {'S': data.get('rol')},
         'rut': {'S': data.get('rut')},

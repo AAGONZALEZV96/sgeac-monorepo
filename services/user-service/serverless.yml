@@ -9,25 +9,29 @@ provider:
     DYNAMODB_TABLE: ${self:custom.tableName}
     EMAIL_INDEX: ${self:custom.emailIndexName}
     JWT_SECRET: "UNA_CLAVE_MUY_SECRETA_PARA_DESARROLLO"
+  
     
-  iam:
-    role:
-      statements:
-        - Effect: "Allow"
-          Action:
-            - "dynamodb:PutItem"   
-            - "dynamodb:GetItem"   
-            - "dynamodb:Scan"
-            - "dynamodb:UpdateItem"
-            - "dynamodb:DeleteItem"
-            - "dynamodb:Query"
-
-          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
-        - Effect: "Allow" 
-          Action:
-            - "dynamodb:GetItem"   
-            - "dynamodb:UpdateItem" 
-          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/sgeac-niveles-table-${self:provider.stage}" 
+iam:
+  role:
+    statements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:PutItem"   
+          - "dynamodb:GetItem"   
+          - "dynamodb:Scan"
+          - "dynamodb:UpdateItem"
+          - "dynamodb:DeleteItem"
+          - "dynamodb:Query"
+        # --- PERMISOS CORREGIDOS ---
+        # Ahora se aplica tanto a la tabla como a sus índices
+        Resource: 
+          - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+          - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}/index/*"
+      - Effect: "Allow" 
+        Action:
+          - "dynamodb:GetItem"   
+          - "dynamodb:UpdateItem" 
+        Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/sgeac-niveles-table-${self:provider.stage}" 
 
 plugins:
   - serverless-python-requirements
@@ -52,17 +56,26 @@ functions:
       - http:
           path: /users
           method: post
-          cors: true
-
+          cors:
+            origin: 'http://localhost:3000'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
 
   getUserById:
     handler: get_user.handler
     description: "Obtiene un usuario por su ID único."
     events:
       - http:
-          path: /users/{id} 
+          path: /users/{id}
           method: get
-          cors: true
+          cors:
+            origin: 'http://localhost:3000'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
 
   listUsers:
     handler: list_user.handler
@@ -71,7 +84,12 @@ functions:
       - http:
           path: /users
           method: get
-          cors: true
+          cors:
+            origin: 'http://localhost:3000'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
 
   updateUser:
     handler: update_user.handler
@@ -79,8 +97,13 @@ functions:
     events:
       - http:
           path: /users/{id}
-          method: put 
-          cors: true
+          method: put
+          cors:
+            origin: 'http://localhost:3000'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
 
   deleteUser:
     handler: delete_user.handler
@@ -88,27 +111,42 @@ functions:
     events:
       - http:
           path: /users/{id}
-          method: delete 
-          cors: true
+          method: delete
+          cors:
+            origin: 'http://localhost:3000'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
 
   asignarNivel:
     handler: asignar_nivel.handler
     description: "Asigna un alumno a un nuevo nivel, validando cupos."
     events:
       - http:
-          
           path: /users/{id}/nivel
-          method: post 
-          cors: true
-
+          method: post
+          cors:
+            origin: 'http://localhost:3000'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
+      
   login:
     handler: login.handler
     description: "Inicia sesión de un usuario y devuelve un JWT."
     events:
       - http:
-          path: /users/login
+          path: /login
           method: post
-          cors: true
+          cors:
+            origin: 'http://localhost:3000'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
+          
 
 resources:
   Resources:
