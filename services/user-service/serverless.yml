@@ -5,37 +5,42 @@ provider:
   runtime: python3.11
   stage: ${opt:stage, 'local'}
   region: us-east-1
+
+  # --- BLOQUE CORREGIDO ---
+  # La configuración 'http' para el CORS global va DENTRO de provider.
+  http:
+    cors:
+      origin: 'http://localhost:3000'
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+        - X-Amz-Date
+        - X-Api-Key
+        - X-Amz-Security-Token
+      allowCredentials: true
+  
   environment:
     DYNAMODB_TABLE: ${self:custom.tableName}
     EMAIL_INDEX: ${self:custom.emailIndexName}
-    JWT_SECRET: "UNA_CLAVE_MUY_SECRETA_PARA_DESARROLLO"
-  
+    JWT_SECRET: "UNA_CLAVE_MUY_SECRETA_PARA_DESARROLLO_12345"
     
-iam:
-  role:
-    statements:
-      - Effect: "Allow"
-        Action:
-          - "dynamodb:PutItem"   
-          - "dynamodb:GetItem"   
-          - "dynamodb:Scan"
-          - "dynamodb:UpdateItem"
-          - "dynamodb:DeleteItem"
-          - "dynamodb:Query"
-        # --- PERMISOS CORREGIDOS ---
-        # Ahora se aplica tanto a la tabla como a sus índices
-        Resource: 
-          - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
-          - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}/index/*"
-      - Effect: "Allow" 
-        Action:
-          - "dynamodb:GetItem"   
-          - "dynamodb:UpdateItem" 
-        Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/sgeac-niveles-table-${self:provider.stage}" 
+  # La sección 'iam' también va DENTRO de provider.
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action: [ "dynamodb:PutItem", "dynamodb:GetItem", "dynamodb:Scan", "dynamodb:UpdateItem", "dynamodb:DeleteItem", "dynamodb:Query" ]
+          Resource: 
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}/index/*"
+        - Effect: "Allow" 
+          Action: [ "dynamodb:GetItem", "dynamodb:UpdateItem" ]
+          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/sgeac-niveles-table-${self:provider.stage}"
 
 plugins:
   - serverless-python-requirements
   - serverless-localstack
+  - serverless-offline
 
 custom:
   tableName: sgeac-users-table-${self:provider.stage}
@@ -45,10 +50,14 @@ custom:
   localstack:
     stages:
       - local
-    host: http://localhost
-    autostart: false
+  serverless-offline:
+    httpPort: 3001
+    noPrependStageInUrl: true
 
 functions:
+  # --- SECCIÓN DE FUNCIONES MUCHO MÁS LIMPIA ---
+  # Ya no necesitan el bloque 'cors' porque lo heredan del provider.
+  
   createUser:
     handler: create_user.handler
     description: "Crea un nuevo usuario en la academia."
@@ -56,12 +65,6 @@ functions:
       - http:
           path: /users
           method: post
-          cors:
-            origin: 'http://localhost:3000'
-            headers:
-              - Content-Type
-              - Authorization
-            allowCredentials: true
 
   getUserById:
     handler: get_user.handler
@@ -70,12 +73,6 @@ functions:
       - http:
           path: /users/{id}
           method: get
-          cors:
-            origin: 'http://localhost:3000'
-            headers:
-              - Content-Type
-              - Authorization
-            allowCredentials: true
 
   listUsers:
     handler: list_user.handler
@@ -84,12 +81,6 @@ functions:
       - http:
           path: /users
           method: get
-          cors:
-            origin: 'http://localhost:3000'
-            headers:
-              - Content-Type
-              - Authorization
-            allowCredentials: true
 
   updateUser:
     handler: update_user.handler
@@ -98,12 +89,6 @@ functions:
       - http:
           path: /users/{id}
           method: put
-          cors:
-            origin: 'http://localhost:3000'
-            headers:
-              - Content-Type
-              - Authorization
-            allowCredentials: true
 
   deleteUser:
     handler: delete_user.handler
@@ -112,13 +97,7 @@ functions:
       - http:
           path: /users/{id}
           method: delete
-          cors:
-            origin: 'http://localhost:3000'
-            headers:
-              - Content-Type
-              - Authorization
-            allowCredentials: true
-
+          
   asignarNivel:
     handler: asignar_nivel.handler
     description: "Asigna un alumno a un nuevo nivel, validando cupos."
@@ -126,13 +105,7 @@ functions:
       - http:
           path: /users/{id}/nivel
           method: post
-          cors:
-            origin: 'http://localhost:3000'
-            headers:
-              - Content-Type
-              - Authorization
-            allowCredentials: true
-      
+          
   login:
     handler: login.handler
     description: "Inicia sesión de un usuario y devuelve un JWT."
@@ -140,12 +113,6 @@ functions:
       - http:
           path: /login
           method: post
-          cors:
-            origin: 'http://localhost:3000'
-            headers:
-              - Content-Type
-              - Authorization
-            allowCredentials: true
           
 
 resources:

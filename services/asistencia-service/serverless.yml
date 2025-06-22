@@ -5,20 +5,32 @@ provider:
   runtime: python3.11
   stage: ${opt:stage, 'local'}
   region: us-east-1
+
+  # Configuración de CORS global para toda la API de este servicio
+  http:
+    cors:
+      origin: 'http://localhost:3000'
+      headers:
+        - Content-Type
+        - Authorization
+      allowCredentials: true
+
   environment:
     DYNAMODB_TABLE: ${self:custom.tableName}
     ALUMNO_INDEX: ${self:custom.alumnoIndexName}
     NIVEL_INDEX: ${self:custom.nivelIndexName}
+    
   iam:
     role:
       statements:
         - Effect: "Allow"
           Action:
             - "dynamodb:PutItem"
+            - "dynamodb:GetItem" # Añadido para completitud
             - "dynamodb:Query"
-            - "dynamodb:UpdateItem" # Para actualizar
-            - "dynamodb:DeleteItem" # Para borrar
-            - "dynamodb:Scan"       # Para listar todo
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:Scan"
           Resource:
             - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
             - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}/index/*"
@@ -26,6 +38,7 @@ provider:
 plugins:
   - serverless-python-requirements
   - serverless-localstack
+  - serverless-offline  # <-- Plugin añadido
 
 custom:
   tableName: sgeac-asistencias-table-${self:provider.stage}
@@ -36,38 +49,49 @@ custom:
   localstack:
     stages:
       - local
-    host: http://localhost
-    autostart: false
+  
+  # Configuración para que este servicio corra en su propio puerto
+  serverless-offline:
+    httpPort: 3004 # Puerto para el servicio de asistencia
+    host: 0.0.0.0
+    noPrependStageInUrl: true
 
 functions:
   registrarAsistencia:
     handler: registrar_asistencia.handler
-    description: "Registra la asistencia (presente/ausente) de un alumno en una fecha."
+    description: "Registra la asistencia de un alumno."
     events:
       - http:
           path: /asistencia
           method: post
-          cors: true
+          # ya no se necesita cors: true aquí
 
   resumenPorAlumno:
     handler: resumen_x_alumno.handler
-    description: "Devuelve el conteo de asistencias y faltas de un alumno."
+    description: "Devuelve el resumen de asistencias de un alumno."
     events:
       - http:
           path: /asistencia/resumen/alumno/{alumno_id}
           method: get
-          cors: true
 
   resumenPorNivel:
     handler: resumen_x_nivel.handler
-    description: "Devuelve el conteo de asistencias y faltas de un nivel."
+    description: "Devuelve el resumen de asistencias de un nivel."
     events:
       - http:
           path: /asistencia/resumen/nivel/{nivel_id}
           method: get
-          cors: true
+
+  listarAsistenciasPorAlumno:
+    handler: list_by_alumno.handler
+    description: "Devuelve el historial detallado de asistencias de un alumno."
+    events:
+      - http:
+          path: /asistencia/alumno/{alumno_id}
+          method: get
 
 resources:
+  # Tu sección de resources estaba perfecta y se mantiene igual
   Resources:
     AsistenciasTable:
       Type: 'AWS::DynamoDB::Table'
@@ -76,9 +100,9 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
-          - AttributeName: alumno_id # Atributo para el primer índice
+          - AttributeName: alumno_id
             AttributeType: S
-          - AttributeName: nivel_id  # Atributo para el segundo índice
+          - AttributeName: nivel_id
             AttributeType: S
         KeySchema:
           - AttributeName: id
