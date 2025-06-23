@@ -5,8 +5,19 @@ provider:
   runtime: python3.11
   stage: ${opt:stage, 'local'}
   region: us-east-1
+
+  # Configuración de CORS global, correctamente indentada
+  http:
+    cors:
+      origin: 'http://localhost:3000'
+      headers:
+        - Content-Type
+        - Authorization
+      allowCredentials: true
+
   environment:
     DYNAMODB_TABLE: ${self:custom.tableName}
+    
   iam:
     role:
       statements:
@@ -22,6 +33,7 @@ provider:
 plugins:
   - serverless-python-requirements
   - serverless-localstack
+  - serverless-offline
 
 custom:
   tableName: sgeac-roles-table-${self:provider.stage}
@@ -30,10 +42,14 @@ custom:
   localstack:
     stages:
       - local
-    host: http://localhost
-    autostart: false
+  serverless-offline:
+    httpPort: 3003 # Puerto para este servicio
+    host: '0.0.0.0'
+    lambdaPort: 4003 # Puerto para las funciones Lambda
+    noPrependStageInUrl: true
 
 functions:
+  # --- ESTRUCTURA DE EVENTOS CORREGIDA Y LEGIBLE ---
   createRol:
     handler: create_rol.handler
     description: "Crea un nuevo rol."
@@ -41,7 +57,6 @@ functions:
       - http:
           path: /roles
           method: post
-          cors: true
 
   listRoles:
     handler: list_rol.handler
@@ -50,7 +65,6 @@ functions:
       - http:
           path: /roles
           method: get
-          cors: true
 
   getRolById:
     handler: get_rol.handler
@@ -59,7 +73,6 @@ functions:
       - http:
           path: /roles/{id}
           method: get
-          cors: true
 
   updateRol:
     handler: up_rol.handler
@@ -68,7 +81,6 @@ functions:
       - http:
           path: /roles/{id}
           method: put
-          cors: true
 
   deleteRol:
     handler: delete_rol.handler
@@ -77,7 +89,6 @@ functions:
       - http:
           path: /roles/{id}
           method: delete
-          cors: true
 
 resources:
   Resources:

@@ -4,6 +4,7 @@
   "description": "Servicio para gestionar los tipos de nivel de la academia.",
   "devDependencies": {
     "serverless-localstack": "^1.1.2",
+    "serverless-offline": "^14.4.0",
     "serverless-python-requirements": "^6.0.0"
   }
 }

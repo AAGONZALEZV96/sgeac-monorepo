@@ -5,6 +5,16 @@ provider:
   runtime: python3.11
   stage: ${opt:stage, 'local'}
   region: us-east-1
+
+  # Configuración de CORS global para toda la API de este servicio
+  http:
+    cors:
+      origin: 'http://localhost:3000'
+      headers:
+        - Content-Type
+        - Authorization
+      allowCredentials: true
+
   environment:
     DYNAMODB_TABLE: ${self:custom.tableName}
   iam:
@@ -22,6 +32,7 @@ provider:
 plugins:
   - serverless-python-requirements
   - serverless-localstack
+  - serverless-offline  # <-- Plugin añadido
 
 custom:
   tableName: sgeac-sucursales-table-${self:provider.stage}
@@ -30,8 +41,11 @@ custom:
   localstack:
     stages:
       - local
-    host: http://localhost
-    autostart: false
+  serverless-offline:
+    httpPort: 3007 # Puerto para el servicio de asistencia
+    host: '0.0.0.0'
+    lambdaPort: 4007 # Puerto para las funciones Lambda
+    noPrependStageInUrl: true
 
 functions:
   createSucursal:
@@ -41,7 +55,7 @@ functions:
       - http:
           path: /sucursales
           method: post
-          cors: true
+          
 
   listSucursales:
     handler: list_sucursal.handler
@@ -50,7 +64,7 @@ functions:
       - http:
           path: /sucursales
           method: get
-          cors: true
+          
 
   getSucursalById:
     handler: get_sucursal.handler
@@ -59,7 +73,7 @@ functions:
       - http:
           path: /sucursales/{id}
           method: get
-          cors: true
+          
 
   updateSucursal:
     handler: update_sucursal.handler
@@ -68,7 +82,7 @@ functions:
       - http:
           path: /sucursales/{id}
           method: put
-          cors: true
+          
 
   deleteSucursal:
     handler: delete_sucursal.handler
@@ -77,7 +91,7 @@ functions:
       - http:
           path: /sucursales/{id}
           method: delete
-          cors: true
+          
 
 resources:
   Resources:

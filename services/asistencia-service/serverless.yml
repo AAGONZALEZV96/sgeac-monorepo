@@ -49,11 +49,10 @@ custom:
   localstack:
     stages:
       - local
-  
-  # Configuración para que este servicio corra en su propio puerto
   serverless-offline:
     httpPort: 3004 # Puerto para el servicio de asistencia
-    host: 0.0.0.0
+    host: '0.0.0.0'
+    lambdaPort: 4004 # Puerto para las funciones Lambda
     noPrependStageInUrl: true
 
 functions:

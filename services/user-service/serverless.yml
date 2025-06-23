@@ -52,6 +52,8 @@ custom:
       - local
   serverless-offline:
     httpPort: 3001
+    lambdaPort: 4001
+    host: '0.0.0.0'
     noPrependStageInUrl: true
 
 functions:

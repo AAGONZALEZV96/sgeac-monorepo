@@ -5,6 +5,16 @@ provider:
   runtime: python3.11
   stage: ${opt:stage, 'local'}
   region: us-east-1
+
+  # Configuración de CORS global para toda la API de este servicio
+  http:
+    cors:
+      origin: 'http://localhost:3000'
+      headers:
+        - Content-Type
+        - Authorization
+      allowCredentials: true
+
   environment:
     DYNAMODB_TABLE: ${self:custom.tableName}
     TIPO_NIVEL_INDEX: ${self:custom.tipoNivelIndexName}
@@ -26,6 +36,7 @@ provider:
 plugins:
   - serverless-python-requirements
   - serverless-localstack
+  - serverless-offline
 
 custom:
   tableName: sgeac-niveles-table-${self:provider.stage}
@@ -35,8 +46,11 @@ custom:
   localstack:
     stages:
       - local
-    host: http://localhost
-    autostart: false
+  serverless-offline:
+    httpPort: 3006 # Puerto para el servicio de asistencia
+    host: '0.0.0.0'
+    lambdaPort: 4006 # Puerto para las funciones Lambda
+    noPrependStageInUrl: true
 
 functions:
   createNivel:
@@ -46,7 +60,7 @@ functions:
       - http:
           path: /niveles
           method: post
-          cors: true
+          
   
   getNivelById:
     handler: get_nivel.handler
@@ -55,7 +69,7 @@ functions:
       - http:
           path: /niveles/{id}
           method: get
-          cors: true
+          
 
   listNiveles:
     handler: list_niveles.handler
@@ -64,7 +78,7 @@ functions:
       - http:
           path: /niveles
           method: get
-          cors: true
+          
 
   listNivelesByTipo:
     handler: list_niveles_x_tipo.handler
@@ -73,7 +87,7 @@ functions:
       - http: 
           path: /niveles/tipo/{tipo_id}
           method: get
-          cors: true
+          
 
   listNivelesByTipoAndCupo:
     handler: list_niveles_x_tipo_y_cupo.handler
@@ -82,7 +96,7 @@ functions:
       - http: 
           path: /niveles/tipo/{tipo_id}/cupo
           method: get
-          cors: true
+          
 
   updateNivel:
     handler: up_nivel.handler
@@ -91,7 +105,7 @@ functions:
       - http:
           path: /niveles/{id}
           method: put
-          cors: true
+          
           
   deleteNivel:
     handler: delete_nivel.handler
@@ -100,7 +114,7 @@ functions:
       - http:
           path: /niveles/{id}
           method: delete
-          cors: true
+          
 
 resources:
   Resources:

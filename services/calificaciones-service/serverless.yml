@@ -5,6 +5,17 @@ provider:
   runtime: python3.11
   stage: ${opt:stage, 'local'}
   region: us-east-1
+
+  # Configuración de CORS global para toda la API de este servicio
+  http:
+    cors:
+      origin: 'http://localhost:3000'
+      headers:
+        - Content-Type
+        - Authorization
+      allowCredentials: true
+
+
   environment:
     DYNAMODB_TABLE: ${self:custom.tableName}
     ALUMNO_INDEX: ${self:custom.alumnoIndexName}
@@ -25,6 +36,7 @@ provider:
 plugins:
   - serverless-python-requirements
   - serverless-localstack
+  - serverless-offline  # <-- Plugin añadido
 
 custom:
   tableName: sgeac-calificaciones-table-${self:provider.stage}
@@ -34,8 +46,11 @@ custom:
   localstack:
     stages:
       - local
-    host: http://localhost
-    autostart: false
+  serverless-offline:
+    httpPort: 3005 # Puerto para el servicio de asistencia
+    host: '0.0.0.0'
+    lambdaPort: 4005 # Puerto para las funciones Lambda
+    noPrependStageInUrl: true
 
 functions:
   registrarCalificacion:
@@ -45,7 +60,7 @@ functions:
       - http:
           path: /calificaciones
           method: post
-          cors: true
+          
 
   listarCalificacionesPorAlumno:
     handler: list_x_alumno.handler
@@ -54,7 +69,7 @@ functions:
       - http:
           path: /calificaciones/alumno/{alumno_id}
           method: get
-          cors: true
+          
   
   updateCalificacion:
     handler: up_calif.handler
@@ -63,7 +78,7 @@ functions:
       - http:
           path: /calificaciones/{id} # Usamos el ID de la calificación
           method: put
-          cors: true
+          
 
   
   deleteCalificacion:
@@ -73,7 +88,7 @@ functions:
       - http:
           path: /calificaciones/{id}
           method: delete
-          cors: true
+          
 resources:
   Resources:
     CalificacionesTable:
