@@ -4,7 +4,7 @@ import boto3
 def get_dynamodb_client():
     """Crea y devuelve un cliente de DynamoDB, configurado para LocalStack si es necesario."""
     if os.environ.get('IS_OFFLINE', False):
-        return boto3.client("dynamodb", endpoint_url="http://localhost.localstack.cloud:4566")
+        return boto3.client("dynamodb", endpoint_url="http://localhost:4566")
     else:
         return boto3.client("dynamodb")
 
