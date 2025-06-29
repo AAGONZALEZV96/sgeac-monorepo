@@ -1,0 +1,146 @@
+service: inscripcion-service
+
+provider:
+  name: aws
+  runtime: python3.11
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:custom.insTableName}
+    USER_TABLE: ${self:custom.userTableName}
+    STUDENT_ROLE_ID: ${self:custom.studentRoleId}
+    SES_SOURCE_EMAIL: "tucorreo@dominio.com"
+    AWS_REGION: ${self:provider.region}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:GetItem
+            - dynamodb:UpdateItem
+            - dynamodb:Scan
+            - dynamodb:Query
+            - dynamodb:DeleteItem
+          Resource:
+            - arn:aws:dynamodb:${self:provider.region}::table/${self:custom.insTableName}
+            - arn:aws:dynamodb:${self:provider.region}::table/${self:custom.userTableName}
+        - Effect: "Allow"
+          Action:
+            - ses:SendEmail
+          Resource: "*"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-localstack
+  - serverless-offline
+
+custom:
+  insTableName: sgeac-inscripciones-table-${self:provider.stage}
+  userTableName: sgeac-users-table-${self:provider.stage}
+  studentRoleId: abc123-role-id-alumno
+  pythonRequirements:
+    dockerizePip: true
+  localstack:
+    stages:
+      - local
+  serverless-offline:
+    httpPort: 3010
+    lambdaPort: 4010
+    host: '0.0.0.0'
+    noPrependStageInUrl: true
+
+functions:
+  createInscripcion:
+    handler: create_inscripcion.handler
+    description: "Crea una nueva inscripción de alumno."
+    events:
+      - http:
+          path: /inscripciones
+          method: post
+          cors:
+            origin: 'http://localhost:3000'
+            allowedHeaders:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
+
+  getInscripcion:
+    handler: get_inscripcion.handler
+    description: "Obtiene inscripción por ID."
+    events:
+      - http:
+          path: /inscripciones/{id}
+          method: get
+          cors:
+            origin: 'http://localhost:3000'
+            allowedHeaders:
+              - Content-Type
+            allowCredentials: true
+
+  listInscripciones:
+    handler: list_inscripcion.handler
+    description: "Lista inscripciones (pendientes o activas)."
+    events:
+      - http:
+          path: /inscripciones
+          method: get
+          cors:
+            origin: 'http://localhost:3000'
+            allowedHeaders:
+              - Content-Type
+            allowCredentials: true
+
+  approveInscripcion:
+    handler: aprueba_inscripcion.handler
+    description: "Aprueba una inscripción, crea usuario y envía correo."
+    events:
+      - http:
+          path: /inscripciones/{id}/approve
+          method: post
+          cors:
+            origin: 'http://localhost:3000'
+            allowedHeaders:
+              - Content-Type
+            allowCredentials: true
+
+  rejectInscripcion:
+    handler: rechazo_inscripcion.handler
+    description: "Rechaza una inscripción pendiente."
+    events:
+      - http:
+          path: /inscripciones/{id}/reject
+          method: post
+          cors:
+            origin: 'http://localhost:3000'
+            allowedHeaders:
+              - Content-Type
+            allowCredentials: true
+
+resources:
+  Resources:
+    InscripcionesTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:custom.insTableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: status
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: status-index
+            KeySchema:
+              - AttributeName: status
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

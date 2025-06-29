@@ -1,0 +1,10 @@
+{
+  "name": "inscripciones-service",
+  "version": "1.0.0",
+  "description": "Servicio para gestionar las inscripciones de los alumnos en la academia.",
+  "devDependencies": {
+    "serverless-localstack": "^1.1.2",
+    "serverless-offline": "^14.4.0",
+    "serverless-python-requirements": "^6.0.0"
+  }
+}
