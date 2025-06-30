@@ -180,7 +180,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-32412fd5-c581",
-                "S3Key": "serverless/user-service/local/1751229509456-2025-06-29T20:38:29.456Z/user-service.zip"
+                "S3Key": "serverless/user-service/local/1751252658643-2025-06-30T03:04:18.643Z/user-service.zip"
               },
               "Handler": "create_user.handler",
               "Runtime": "python3.11",
@@ -212,7 +212,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-32412fd5-c581",
-                "S3Key": "serverless/user-service/local/1751229509456-2025-06-29T20:38:29.456Z/user-service.zip"
+                "S3Key": "serverless/user-service/local/1751252658643-2025-06-30T03:04:18.643Z/user-service.zip"
               },
               "Handler": "get_user.handler",
               "Runtime": "python3.11",
@@ -244,7 +244,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-32412fd5-c581",
-                "S3Key": "serverless/user-service/local/1751229509456-2025-06-29T20:38:29.456Z/user-service.zip"
+                "S3Key": "serverless/user-service/local/1751252658643-2025-06-30T03:04:18.643Z/user-service.zip"
               },
               "Handler": "list_user.handler",
               "Runtime": "python3.11",
@@ -276,7 +276,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-32412fd5-c581",
-                "S3Key": "serverless/user-service/local/1751229509456-2025-06-29T20:38:29.456Z/user-service.zip"
+                "S3Key": "serverless/user-service/local/1751252658643-2025-06-30T03:04:18.643Z/user-service.zip"
               },
               "Handler": "update_user.handler",
               "Runtime": "python3.11",
@@ -308,7 +308,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-32412fd5-c581",
-                "S3Key": "serverless/user-service/local/1751229509456-2025-06-29T20:38:29.456Z/user-service.zip"
+                "S3Key": "serverless/user-service/local/1751252658643-2025-06-30T03:04:18.643Z/user-service.zip"
               },
               "Handler": "delete_user.handler",
               "Runtime": "python3.11",
@@ -340,7 +340,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-32412fd5-c581",
-                "S3Key": "serverless/user-service/local/1751229509456-2025-06-29T20:38:29.456Z/user-service.zip"
+                "S3Key": "serverless/user-service/local/1751252658643-2025-06-30T03:04:18.643Z/user-service.zip"
               },
               "Handler": "asignar_nivel.handler",
               "Runtime": "python3.11",
@@ -372,7 +372,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-32412fd5-c581",
-                "S3Key": "serverless/user-service/local/1751229509456-2025-06-29T20:38:29.456Z/user-service.zip"
+                "S3Key": "serverless/user-service/local/1751252658643-2025-06-30T03:04:18.643Z/user-service.zip"
               },
               "Handler": "login.handler",
               "Runtime": "python3.11",
@@ -399,80 +399,80 @@
               "LoginLogGroup"
             ]
           },
-          "CreateUserLambdaVersionXFDFL4t2oZIydQmWAoHrIM1y72Ig7pTh9DB1Zlwbv04": {
+          "CreateUserLambdaVersionfW0kPh7O7lMNP67kApPEtv8KobKQXiceSIeYMyvXIPY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateUserLambdaFunction"
               },
-              "CodeSha256": "IhuE4Kpw+qlfAH8CLTbguLE5uBBmjaLwXcGLDeyqPeo=",
+              "CodeSha256": "e3BxttZH1p6FiiZ3kFTURxlmakJ/jJMZy+CTTPt/miA=",
               "Description": "Crea un nuevo usuario en la academia."
             }
           },
-          "GetUserByIdLambdaVersionLtb6Cc1VFVFRu4GOdWeayE2zE0KCwG3aVFOXqNLF8": {
+          "GetUserByIdLambdaVersionHgAzr1Nzxee7PNonFkl9LqPbzbH8eKYua8tOwWJoTY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUserByIdLambdaFunction"
               },
-              "CodeSha256": "IhuE4Kpw+qlfAH8CLTbguLE5uBBmjaLwXcGLDeyqPeo=",
+              "CodeSha256": "e3BxttZH1p6FiiZ3kFTURxlmakJ/jJMZy+CTTPt/miA=",
               "Description": "Obtiene un usuario por su ID único."
             }
           },
-          "ListUsersLambdaVersionM8lSgYf0F8gT5RGGP3QZVemQUjghoRk1eh0MSp7vHk": {
+          "ListUsersLambdaVersiontAXr2FVT5S1M6IXx59WcCbzY5rWFOqRGAK7VGJNXg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ListUsersLambdaFunction"
               },
-              "CodeSha256": "IhuE4Kpw+qlfAH8CLTbguLE5uBBmjaLwXcGLDeyqPeo=",
+              "CodeSha256": "e3BxttZH1p6FiiZ3kFTURxlmakJ/jJMZy+CTTPt/miA=",
               "Description": "Lista todos los usuarios de la academia."
             }
           },
-          "UpdateUserLambdaVersionLSWRhXo6xHcctBsLfDVb9ypFdoO8OQCqlJ6jjIG5f0": {
+          "UpdateUserLambdaVersion2wwfvX7N1Iu5tEPn9zc5nwoAucpo8dxEKALk7scSpU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateUserLambdaFunction"
               },
-              "CodeSha256": "IhuE4Kpw+qlfAH8CLTbguLE5uBBmjaLwXcGLDeyqPeo=",
+              "CodeSha256": "e3BxttZH1p6FiiZ3kFTURxlmakJ/jJMZy+CTTPt/miA=",
               "Description": "Actualiza los datos de un usuario existente."
             }
           },
-          "DeleteUserLambdaVersionvl8H0vW3hli0Sy5pigRLN1pfwTbuYKibutRQNfS9f2s": {
+          "DeleteUserLambdaVersionrJaoB3r73rrmfD8d7EsoYs4xPsD7H97jtaD0lUEU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DeleteUserLambdaFunction"
               },
-              "CodeSha256": "IhuE4Kpw+qlfAH8CLTbguLE5uBBmjaLwXcGLDeyqPeo=",
+              "CodeSha256": "e3BxttZH1p6FiiZ3kFTURxlmakJ/jJMZy+CTTPt/miA=",
               "Description": "Elimina un usuario por su ID."
             }
           },
-          "AsignarNivelLambdaVersionluympHPzMKNOjYZNq1XvzBfOX93dJoyJkvaW5saS7Q0": {
+          "AsignarNivelLambdaVersionl3d8me43Oyl53ZLhvS7YZn31MlRMkCMqjdo3WfHSA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AsignarNivelLambdaFunction"
               },
-              "CodeSha256": "IhuE4Kpw+qlfAH8CLTbguLE5uBBmjaLwXcGLDeyqPeo=",
+              "CodeSha256": "e3BxttZH1p6FiiZ3kFTURxlmakJ/jJMZy+CTTPt/miA=",
               "Description": "Asigna un alumno a un nuevo nivel, validando cupos."
             }
           },
-          "LoginLambdaVersionmqV7rsDWtmOlLy8yJvPRxH8qIwR7jpqG4G9cPcuQg": {
+          "LoginLambdaVersionubBa9NgthgxqRAABxVB3D8CKuJ9qFiRr0CV7KEGADA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "LoginLambdaFunction"
               },
-              "CodeSha256": "IhuE4Kpw+qlfAH8CLTbguLE5uBBmjaLwXcGLDeyqPeo=",
+              "CodeSha256": "e3BxttZH1p6FiiZ3kFTURxlmakJ/jJMZy+CTTPt/miA=",
               "Description": "Inicia sesión de un usuario y devuelve un JWT."
             }
           },
@@ -1052,7 +1052,7 @@
               "LoginLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1751229502056": {
+          "ApiGatewayDeployment1751252649534": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1388,7 +1388,7 @@
           "CreateUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateUserLambdaVersionXFDFL4t2oZIydQmWAoHrIM1y72Ig7pTh9DB1Zlwbv04"
+              "Ref": "CreateUserLambdaVersionfW0kPh7O7lMNP67kApPEtv8KobKQXiceSIeYMyvXIPY"
             },
             "Export": {
               "Name": "sls-user-service-local-CreateUserLambdaFunctionQualifiedArn"
@@ -1397,7 +1397,7 @@
           "GetUserByIdLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUserByIdLambdaVersionLtb6Cc1VFVFRu4GOdWeayE2zE0KCwG3aVFOXqNLF8"
+              "Ref": "GetUserByIdLambdaVersionHgAzr1Nzxee7PNonFkl9LqPbzbH8eKYua8tOwWJoTY"
             },
             "Export": {
               "Name": "sls-user-service-local-GetUserByIdLambdaFunctionQualifiedArn"
@@ -1406,7 +1406,7 @@
           "ListUsersLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ListUsersLambdaVersionM8lSgYf0F8gT5RGGP3QZVemQUjghoRk1eh0MSp7vHk"
+              "Ref": "ListUsersLambdaVersiontAXr2FVT5S1M6IXx59WcCbzY5rWFOqRGAK7VGJNXg"
             },
             "Export": {
               "Name": "sls-user-service-local-ListUsersLambdaFunctionQualifiedArn"
@@ -1415,7 +1415,7 @@
           "UpdateUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateUserLambdaVersionLSWRhXo6xHcctBsLfDVb9ypFdoO8OQCqlJ6jjIG5f0"
+              "Ref": "UpdateUserLambdaVersion2wwfvX7N1Iu5tEPn9zc5nwoAucpo8dxEKALk7scSpU"
             },
             "Export": {
               "Name": "sls-user-service-local-UpdateUserLambdaFunctionQualifiedArn"
@@ -1424,7 +1424,7 @@
           "DeleteUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DeleteUserLambdaVersionvl8H0vW3hli0Sy5pigRLN1pfwTbuYKibutRQNfS9f2s"
+              "Ref": "DeleteUserLambdaVersionrJaoB3r73rrmfD8d7EsoYs4xPsD7H97jtaD0lUEU"
             },
             "Export": {
               "Name": "sls-user-service-local-DeleteUserLambdaFunctionQualifiedArn"
@@ -1433,7 +1433,7 @@
           "AsignarNivelLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AsignarNivelLambdaVersionluympHPzMKNOjYZNq1XvzBfOX93dJoyJkvaW5saS7Q0"
+              "Ref": "AsignarNivelLambdaVersionl3d8me43Oyl53ZLhvS7YZn31MlRMkCMqjdo3WfHSA"
             },
             "Export": {
               "Name": "sls-user-service-local-AsignarNivelLambdaFunctionQualifiedArn"
@@ -1442,7 +1442,7 @@
           "LoginLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "LoginLambdaVersionmqV7rsDWtmOlLy8yJvPRxH8qIwR7jpqG4G9cPcuQg"
+              "Ref": "LoginLambdaVersionubBa9NgthgxqRAABxVB3D8CKuJ9qFiRr0CV7KEGADA"
             },
             "Export": {
               "Name": "sls-user-service-local-LoginLambdaFunctionQualifiedArn"
@@ -1542,7 +1542,7 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "CreateUserLambdaVersionXFDFL4t2oZIydQmWAoHrIM1y72Ig7pTh9DB1Zlwbv04"
+        "versionLogicalId": "CreateUserLambdaVersionfW0kPh7O7lMNP67kApPEtv8KobKQXiceSIeYMyvXIPY"
       },
       "getUserById": {
         "handler": "get_user.handler",
@@ -1583,7 +1583,7 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "GetUserByIdLambdaVersionLtb6Cc1VFVFRu4GOdWeayE2zE0KCwG3aVFOXqNLF8"
+        "versionLogicalId": "GetUserByIdLambdaVersionHgAzr1Nzxee7PNonFkl9LqPbzbH8eKYua8tOwWJoTY"
       },
       "listUsers": {
         "handler": "list_user.handler",
@@ -1624,7 +1624,7 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "ListUsersLambdaVersionM8lSgYf0F8gT5RGGP3QZVemQUjghoRk1eh0MSp7vHk"
+        "versionLogicalId": "ListUsersLambdaVersiontAXr2FVT5S1M6IXx59WcCbzY5rWFOqRGAK7VGJNXg"
       },
       "updateUser": {
         "handler": "update_user.handler",
@@ -1665,7 +1665,7 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "UpdateUserLambdaVersionLSWRhXo6xHcctBsLfDVb9ypFdoO8OQCqlJ6jjIG5f0"
+        "versionLogicalId": "UpdateUserLambdaVersion2wwfvX7N1Iu5tEPn9zc5nwoAucpo8dxEKALk7scSpU"
       },
       "deleteUser": {
         "handler": "delete_user.handler",
@@ -1706,7 +1706,7 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "DeleteUserLambdaVersionvl8H0vW3hli0Sy5pigRLN1pfwTbuYKibutRQNfS9f2s"
+        "versionLogicalId": "DeleteUserLambdaVersionrJaoB3r73rrmfD8d7EsoYs4xPsD7H97jtaD0lUEU"
       },
       "asignarNivel": {
         "handler": "asignar_nivel.handler",
@@ -1747,7 +1747,7 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "AsignarNivelLambdaVersionluympHPzMKNOjYZNq1XvzBfOX93dJoyJkvaW5saS7Q0"
+        "versionLogicalId": "AsignarNivelLambdaVersionl3d8me43Oyl53ZLhvS7YZn31MlRMkCMqjdo3WfHSA"
       },
       "login": {
         "handler": "login.handler",
@@ -1788,7 +1788,7 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "LoginLambdaVersionmqV7rsDWtmOlLy8yJvPRxH8qIwR7jpqG4G9cPcuQg"
+        "versionLogicalId": "LoginLambdaVersionubBa9NgthgxqRAABxVB3D8CKuJ9qFiRr0CV7KEGADA"
       }
     },
     "resources": {
@@ -1866,7 +1866,7 @@
     "artifact": "/home/aagonzalezv/sgeac-monorepo/services/user-service/.serverless/user-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/user-service/local/1751229509456-2025-06-29T20:38:29.456Z",
+    "artifactDirectoryName": "serverless/user-service/local/1751252658643-2025-06-30T03:04:18.643Z",
     "artifact": "user-service.zip"
   }
 }

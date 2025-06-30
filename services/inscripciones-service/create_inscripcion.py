@@ -3,33 +3,32 @@ import json
 import uuid
 from datetime import datetime
 import boto3
-from utils import get_dynamodb_client
 
-# Cliente configurado (LocalStack o real)
-dynamodb = get_dynamodb_client()
-TABLE_NAME = os.environ.get("DYNAMODB_TABLE")
-
+# Cliente de DynamoDB
+DYNAMODB = boto3.client("dynamodb")
+TABLE_NAME = os.environ["DYNAMODB_TABLE"]
 
 def handler(event, context):
-    cors = {
+    cors_headers = {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Credentials": True
     }
     try:
-        data = json.loads(event.get("body", "{}"))
+        body = event.get("body", "{}")
+        data = json.loads(body)
         required = [
             "studentName", "studentAge", "email", "phone",
             "classType", "experience", "schedule"
         ]
-        for field in required:
-            if not data.get(field):
+        for f in required:
+            if not data.get(f):
                 return {
                     "statusCode": 400,
-                    "headers": cors,
+                    "headers": cors_headers,
                     "body": json.dumps({
                         "success": False,
-                        "message": f"Falta el campo obligatorio: {field}"
+                        "message": f"Falta el campo {f}"
                     })
                 }
         item = {
@@ -41,15 +40,21 @@ def handler(event, context):
             "status": {"S": "pending"},
             "submittedAt": {"S": datetime.utcnow().isoformat()}
         }
-        dynamodb.put_item(TableName=TABLE_NAME, Item=item)
+        DYNAMODB.put_item(TableName=TABLE_NAME, Item=item)
         return {
             "statusCode": 201,
-            "headers": cors,
-            "body": json.dumps({"success": True, "message": "Inscripción creada exitosamente"})
+            "headers": cors_headers,
+            "body": json.dumps({
+                "success": True,
+                "message": "Inscripción creada exitosamente"
+            })
         }
     except Exception as e:
         return {
             "statusCode": 500,
-            "headers": cors,
-            "body": json.dumps({"success": False, "message": f"Error interno: {str(e)}"})
+            "headers": cors_headers,
+            "body": json.dumps({
+                "success": False,
+                "message": f"Error interno: {e}"
+            })
         }

@@ -5,14 +5,12 @@ provider:
   runtime: python3.11
   stage: ${opt:stage, 'local'}
   region: us-east-1
-
   environment:
     DYNAMODB_TABLE: ${self:custom.insTableName}
-    USER_TABLE:      ${self:custom.userTableName}
+    USER_TABLE: ${self:custom.userTableName}
     STUDENT_ROLE_ID: ${self:custom.studentRoleId}
-    AWS_REGION:      ${self:provider.region}
-    IS_OFFLINE:      "${opt:stage, 'local'}"  # para utils.py
-
+    SES_SOURCE_EMAIL: "tucorreo@dominio.com"
+    AWS_REGION: ${self:provider.region}
   iam:
     role:
       statements:
@@ -25,8 +23,8 @@ provider:
             - dynamodb:Query
             - dynamodb:DeleteItem
           Resource:
-            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.insTableName}"
-            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.userTableName}"
+            - arn:aws:dynamodb:${self:provider.region}::table/${self:custom.insTableName}
+            - arn:aws:dynamodb:${self:provider.region}::table/${self:custom.userTableName}
         - Effect: "Allow"
           Action:
             - ses:SendEmail
@@ -62,7 +60,9 @@ functions:
           method: post
           cors:
             origin: 'http://localhost:3000'
-            allowedHeaders: [Content-Type, Authorization]
+            allowedHeaders:
+              - Content-Type
+              - Authorization
             allowCredentials: true
 
   getInscripcion:
@@ -74,7 +74,8 @@ functions:
           method: get
           cors:
             origin: 'http://localhost:3000'
-            allowedHeaders: [Content-Type]
+            allowedHeaders:
+              - Content-Type
             allowCredentials: true
 
   listInscripciones:
@@ -86,12 +87,12 @@ functions:
           method: get
           cors:
             origin: 'http://localhost:3000'
-            allowedHeaders: [Content-Type]
+            allowedHeaders:
+              - Content-Type
             allowCredentials: true
 
   approveInscripcion:
     handler: approve_inscripcion.handler
-    timeout: 10
     description: "Aprueba una inscripción, crea usuario y envía correo."
     events:
       - http:
@@ -99,19 +100,21 @@ functions:
           method: post
           cors:
             origin: 'http://localhost:3000'
-            allowedHeaders: [Content-Type]
+            allowedHeaders:
+              - Content-Type
             allowCredentials: true
 
   rejectInscripcion:
-    handler: rechaza_inscripcion.handler
+    handler: reject_inscripcion.handler
     description: "Rechaza una inscripción pendiente."
     events:
       - http:
           path: /inscripciones/{id}/reject
-          method: post
+          method: delete
           cors:
             origin: 'http://localhost:3000'
-            allowedHeaders: [Content-Type]
+            allowedHeaders:
+              - Content-Type
             allowCredentials: true
 
 resources:
