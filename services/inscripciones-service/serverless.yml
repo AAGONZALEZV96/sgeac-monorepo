@@ -117,6 +117,19 @@ functions:
               - Content-Type
             allowCredentials: true
 
+  updateInscripcion:
+    handler: update_inscripcion.handler
+    description: "Actualiza campos de una inscripción existente"
+    events:
+      - http:
+          path: /inscripciones/{id}
+          method: put
+          cors:
+            origin: 'http://localhost:3000'
+            allowedHeaders: 
+              - Content-Type
+            allowCredentials: true
+
 resources:
   Resources:
     InscripcionesTable:
