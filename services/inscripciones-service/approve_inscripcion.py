@@ -52,6 +52,13 @@ def handler(event, context):
         "email":         {"S": insc.get("email", {}).get("S", "")},
         "rol":           {"S": "alumno"},
         "password_hash": {"S": pwd_hash},
+        "phone":         {"S": insc.get("phone", {}).get("S", "")},
+        "horario":       {"S": insc.get("schedule", {}).get("S", "")},
+        "info_medica":  {"S": insc.get("medicalInfo", {}).get("S", "")},
+        "experiencia":  {"S": insc.get("experience", {}).get("S", "")},
+        "edad":         {"S": str(insc.get("studentAge", {}).get("S", ""))},
+        "clase":        {"S": insc.get("classType", {}).get("S", "")},
+
     }
 
     try:

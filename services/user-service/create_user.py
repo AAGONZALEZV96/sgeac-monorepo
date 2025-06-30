@@ -5,53 +5,81 @@ from utils import get_dynamodb_client
 from werkzeug.security import generate_password_hash
 
 DYNAMODB_CLIENT = get_dynamodb_client()
-TABLE_NAME = os.environ['DYNAMODB_TABLE']
+TABLE_NAME = os.environ["DYNAMODB_TABLE"]
 
 def handler(event, context):
+    cors = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": True
+    }
+
     try:
         data = json.loads(event.get("body", "{}"))
-        
-        # --- Campos requeridos ---
-        email = data.get('email')
-        password = data.get('password')
-        nombre = data.get('nombre')
-        rol = data.get('rol')
+
+        # Campos obligatorios
+        email    = data.get("email")
+        password = data.get("password")
+        nombre   = data.get("nombre")
+        rol      = data.get("rol")
 
         if not all([email, password, nombre, rol]):
-            return {"statusCode": 400, "body": json.dumps({"error": "Faltan atributos requeridos: email, password, nombre, rol."})}
+            return {
+                "statusCode": 400,
+                "headers": cors,
+                "body": json.dumps({
+                    "success": False,
+                    "message": "Faltan atributos requeridos: email, password, nombre, rol."
+                })
+            }
 
+        # Campos adicionales
+        phone        = data.get("phone", "")
+        edad         = data.get("edad")          # número
+        clase        = data.get("clase", "")
+        info_medica  = data.get("info_medica", "")
+        experiencia  = data.get("experiencia", "")
+        horario      = data.get("horario", "")
+
+        # Hashear contraseña
         password_hash = generate_password_hash(password)
-        user_id = str(uuid.uuid4())
-        
-        # --- Construcción del item de forma dinámica ---
-        # 1. Empezamos con los campos que siempre estarán
+        user_id       = str(uuid.uuid4())
+
+        # Construcción dinámica del item
         item = {
-            'id': {'S': user_id},
-            'email': {'S': email},
-            'password_hash': {'S': password_hash},
-            'nombre': {'S': nombre},
-            'rol': {'S': rol},
+            "id":            {"S": user_id},
+            "email":         {"S": email},
+            "nombre":        {"S": nombre},
+            "rol":           {"S": rol},
+            "password_hash": {"S": password_hash},
         }
 
-        # 2. Añadimos los campos opcionales SOLO SI existen en los datos recibidos
-        if data.get('rut'):
-            item['rut'] = {'S': data.get('rut')}
-        if data.get('edad'):
-            item['edad'] = {'N': str(data.get('edad'))}
-        if data.get('telefono'):
-            item['telefono'] = {'S': data.get('telefono')}
-        if data.get('direccion'):
-            item['direccion'] = {'S': data.get('direccion')}
-        if data.get('sucursal_asignada'):
-            item['sucursal_asignada'] = {'S': data.get('sucursal_asignada')}
-        # ----------------------------------------------
-        
+        # Campos opcionales
+        if phone:
+            item["phone"] = {"S": phone}
+        if isinstance(edad, (int, float, str)) and str(edad).isdigit():
+            item["edad"] = {"N": str(edad)}
+        if clase:
+            item["clase"] = {"S": clase}
+        if info_medica:
+            item["info_medica"] = {"S": info_medica}
+        if experiencia:
+            item["experiencia"] = {"S": experiencia}
+        if horario:
+            item["horario"] = {"S": horario}
+
+        # Inserción en DynamoDB
         DYNAMODB_CLIENT.put_item(TableName=TABLE_NAME, Item=item)
-        
-        # Preparamos la respuesta para el auto-login (como lo habíamos diseñado)
-        # ... (puedes añadir aquí la lógica del token JWT si lo deseas) ...
-        
-        return {"statusCode": 201, "body": json.dumps({"message": "Usuario creado exitosamente."})}
+
+        return {
+            "statusCode": 201,
+            "headers": cors,
+            "body": json.dumps({"success": True, "message": "Usuario creado exitosamente."})
+        }
 
     except Exception as e:
-        return {"statusCode": 500, "body": json.dumps({"error": f"Error interno: {str(e)}"}) }
+        return {
+            "statusCode": 500,
+            "headers": cors,
+            "body": json.dumps({"success": False, "message": f"Error interno: {str(e)}"})
+        }
