@@ -5,7 +5,7 @@ from werkzeug.security import check_password_hash
 from utils import get_dynamodb_client, deserialize_item
 
 DYNAMODB_CLIENT = get_dynamodb_client()
-TABLE_NAME       = os.environ["DYNAMODB_TABLE"]   # aquí debe apuntar a la tabla de usuarios
+TABLE_NAME       = os.environ["DYNAMODB_TABLE"]   # tabla de usuarios
 INDEX_NAME       = os.environ["EMAIL_INDEX"]      # índice secundario sobre "email"
 JWT_SECRET       = os.environ["JWT_SECRET"]
 
@@ -22,7 +22,7 @@ def handler(event, context):
                 "body": json.dumps({"error": "Email y contraseña son requeridos."})
             }
 
-        # 1) Query por email usando ExpressionAttributeNames
+        # 1) Query por email
         resp = DYNAMODB_CLIENT.query(
             TableName=TABLE_NAME,
             IndexName=INDEX_NAME,
@@ -55,9 +55,16 @@ def handler(event, context):
 
         token = jwt.encode(info, JWT_SECRET, algorithm="HS256")
 
+        # 4) Responder con Set-Cookie para user_session
         return {
             "statusCode": 200,
-            "headers": {"Content-Type": "application/json"},
+            "headers": {
+                "Content-Type": "application/json",
+                "Set-Cookie": (
+                    f"user_session={token}; "
+                    f"Path=/; HttpOnly; SameSite=Lax; Max-Age={60*60*24}"
+                )
+            },
             "body": json.dumps({
                 "message": "Login exitoso",
                 "token": token,
