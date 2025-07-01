@@ -19,6 +19,10 @@ def handler(event, context):
         filter_expressions.append("rol = :rol")
         expression_attribute_values[":rol"] = {"S": params['rol']}
 
+    if 'nivel' in params:
+        filter_expressions.append("nivel_actual_id = :niv")
+        expression_attribute_values[":niv"] = {"S": params['nivel']}
+
     if filter_expressions:
         scan_args['FilterExpression'] = " AND ".join(filter_expressions)
         scan_args['ExpressionAttributeValues'] = expression_attribute_values
